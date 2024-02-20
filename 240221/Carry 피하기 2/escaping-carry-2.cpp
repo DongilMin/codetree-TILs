@@ -26,6 +26,7 @@ int main() {
             }
         }
     }
-    cout << ans;
+    if(ans == INT_MIN) cout << -1;
+    else cout << ans;
     return 0;
 }
