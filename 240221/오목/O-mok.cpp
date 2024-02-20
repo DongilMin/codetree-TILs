@@ -36,5 +36,6 @@ int main() {
             for(int i=0; i<4; i++) same[i] = 1;
         }
     }
+    cout <<0;
     return 0;
 }
