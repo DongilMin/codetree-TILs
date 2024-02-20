@@ -1,6 +1,7 @@
 #include <string>
 #include <algorithm>
 #include <climits>
+#include <iostream>
 using namespace std;
 int main() {
     string binary;
