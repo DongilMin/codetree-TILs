@@ -11,10 +11,10 @@ int main() {
         cin >> x[i] >> y[i];
     }
     int ans = INT_MAX;
-    for(int i=1; i<=n; i++){
+    for(int i=2; i<n; i++){
         int dis = 0;
-        int curX = 0;
-        int curY = 0;
+        int curX = x[1];
+        int curY = y[1];
         for(int j=1; j<=n; j++){
             if(j==i) continue;
             dis += abs(x[j]-curX)+abs(y[j]-curY);
