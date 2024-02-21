@@ -20,11 +20,11 @@ int main() {
                     if(i == k && j == l) continue;
                     if(i == k && j+1 == l) continue;
                     if(i == k && j+2 == l) continue;
-                    if(i == k && l == j) continue;
                     if(i == k && l+1 == j) continue;
-                    if(i == k && l+3 == j) continue;
+                    if(i == k && l+2 == j) continue;
                     int second = arr[k][l]+arr[k][l+1]+arr[k][l+2];
                     ans = max(ans, num + second);
+                    //cout << ans << " k = " << k << " and l = " << l << '\n';
 
                 }
             }
