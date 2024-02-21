@@ -2,12 +2,14 @@
 #include <algorithm>
 using namespace std;
 int n;
-int arr[21][21];
+int arr[22][21];
 int dx[4] = {-1,-1,1,1};
 int dy[4] = {1,-1,-1,1};
-bool range(int i, int j){
-    return 0<i && 0<j && i<=n && j<=n;
+
+bool range(int x, int y){
+    return 0 <= x && 0 <= y && x < n && y < n;
 }
+
 int cal(int x, int y, int row, int col){
     int curX = x;
     int curY = y;
@@ -33,6 +35,7 @@ int cal(int x, int y, int row, int col){
     for(int i=1; i<=col; i++){
         curX += dx[3];
         curY += dy[3];
+        if(curX == x && curY == y) return sum;
         if(range(curX, curY)) sum += arr[curX][curY];
         else return -1;
     }
