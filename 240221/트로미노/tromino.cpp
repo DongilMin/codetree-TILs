@@ -21,7 +21,7 @@ int main() {
                 if(curX > n || curX < 1 || curY > m || curY < 1) continue;
                 ans = max(ans, arr[i][j] + arr[i][curY] + arr[curX][j]);
             }
-            if(j+2 > n) continue;
+            if(j+2 > m) continue;
             ans = max(ans, arr[i][j]+arr[i][j+1]+arr[i][j+2]);
             if(i+2 > n) continue;
             ans = max(ans, arr[i][j]+arr[i+1][j]+arr[i+2][j]);        
