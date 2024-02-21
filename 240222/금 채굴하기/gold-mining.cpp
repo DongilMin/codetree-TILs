@@ -4,7 +4,7 @@
 using namespace std;
 int arr[50][50]={0};
 int n,m;
-int ans = INT_MIN;
+int ans = 0;
 int getArea(int k){
     return k*k+(k+1)*(k+1);
 }
