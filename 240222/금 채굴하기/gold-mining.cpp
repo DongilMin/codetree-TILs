@@ -1,59 +1,45 @@
 #include <iostream>
 #include <climits>
+#include <algorithm>
 using namespace std;
 int arr[50][50]={0};
 int n,m;
 int ans = INT_MIN;
-int k[3][5][5] = {
-    {
-        {0,0,0,0,0},
-        {0,0,0,0,0},
-        {0,0,1,0,0},
-        {0,0,0,0,0},
-        {0,0,0,0,0},
-    },
-    {
-        {0,0,0,0,0},
-        {0,0,1,0,0},
-        {0,1,1,1,0},
-        {0,0,1,0,0},
-        {0,0,0,0,0},
-    },
-    {
-        {0,0,1,0,0},
-        {0,1,1,1,0},
-        {1,1,1,1,1},
-        {0,1,1,1,0},
-        {0,0,1,0,0},
-    }
-};
-int check(int a, int b){
-    int result = INT_MIN;
-    for(int v=0; v<3; v++){
-        int cnt = 0;
-        for(int i=a-2; i<a+3; i++){
-            for(int j=b-2; j<b+3; j++){
-                if(arr[i][j] == 1 && k[v][i-a+2][j-b+2] == 1) cnt++;
-            }
+int getArea(int k){
+    return k*k+(k+1)*(k+1);
+}
+int getGold(int row, int col, int k){
+    int gold = 0;
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=n; j++){
+            if(abs(row-i) + abs(col-j) <= k)
+                gold += arr[i][j];
         }
-        if(cnt*m - v*v+(v+1)*(v+1) < 0) continue;
-        else result = max(result, cnt);
     }
-    return result;
+    return gold;
 }
 int main() {
     cin >> n >> m;
-    for(int i=2; i<=n+1; i++){
-        for(int j=2; j<=n+1; j++){
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=n; j++){
             cin >> arr[i][j];
         }
     }
-    for(int i=2; i<=n+1; i++){
-        for(int j=2; j<=n+1; j++){
-            ans = max(ans, check(i,j));
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=n; j++){
+            for(int k=0; k<=2*(n-1); k++){
+                int num_of_gold = getGold(i,j,k);
+                if(num_of_gold * m >= getArea(k)){
+                    ans = max(ans, num_of_gold);
+                }
+            }
         }
     }
     cout << ans;
 
     return 0;
 }
+// 2 >2
+// 3 >4
+// 4 >6
+// 5 >8
