@@ -8,7 +8,7 @@ int solve(int x,int y, int w, int h){
     int cnt = 0;
     for(int i=x; i<=x+h; i++){
         for(int j=y; j<=y+w; j++){
-            if(arr[i][j] < 0) return -1;
+            if(arr[i][j] <= 0) return -1;
             else cnt++;
         }
     }
