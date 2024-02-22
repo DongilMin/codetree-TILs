@@ -10,9 +10,6 @@ int solve(int x,int y, int w, int h){
         for(int j=y; j<=y+w; j++){
             if(arr[i][j] < 0) return -1;
             else cnt++;
-            // if(x == 1 && y == 0 && w == 2 && h == 1){
-            //     cout <<  arr[i][j] << ' ';
-            // }
         }
     }
     return cnt;
