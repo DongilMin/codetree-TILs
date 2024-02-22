@@ -6,10 +6,13 @@ int arr[21][21];
 
 int solve(int x,int y, int w, int h){
     int cnt = 0;
-    for(int i=0; i<=x+h; i++){
-        for(int j=0; j<=y+w; j++){
+    for(int i=x; i<=x+h; i++){
+        for(int j=y; j<=y+w; j++){
             if(arr[i][j] < 0) return -1;
-            cnt ++;
+            else cnt++;
+            // if(x == 1 && y == 0 && w == 2 && h == 1){
+            //     cout <<  arr[i][j] << ' ';
+            // }
         }
     }
     return cnt;
