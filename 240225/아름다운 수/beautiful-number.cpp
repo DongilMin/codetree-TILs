@@ -13,7 +13,7 @@ void print(){
 }
 
 void pick(int cur){
-    if(cur >= n+1){
+    if(cur == n+1){
         cnt++;
         return;
     }
