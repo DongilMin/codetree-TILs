@@ -8,8 +8,12 @@ vector<pair<int,int>>v;
 vector<pair<int,int>>ans;
 bool visit[20];
 bool check(int i, int j){
-    return (v[i].second < v[j].first)&&(v[i].first < v[j].first) ||
-            (v[j].second < v[i].first)&&(v[j].first < v[i].first);
+    int ax1=v[i].first;
+    int ax2=v[i].second;
+    int bx1=v[j].first;
+    int bx2=v[j].second
+    return (ax1 <= bx1 && bx1 <= ax2) || (ax1 <= bx2 && bx2 <= ax2) ||
+           (bx1 <= ax1 && ax1 <= bx2) || (bx1 <= ax2 && ax2 <= bx2);
 }
 
 bool possible(){
