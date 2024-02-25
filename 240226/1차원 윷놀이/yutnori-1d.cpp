@@ -7,7 +7,7 @@ vector<int>player;
 int score = 0;
 
 void fun(int turn){
-    if(turn >= m){
+    if(turn == n){
         int tmp = 0;
         for(int i=0; i<player.size(); i++){
             if(player[i] >= m){
