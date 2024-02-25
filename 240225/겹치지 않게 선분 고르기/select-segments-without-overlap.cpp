@@ -8,7 +8,7 @@ vector<pair<int,int>>v;
 vector<pair<int,int>>ans;
 bool visit[20];
 bool check(int i, int j){
-    return v[i].second < v[j].first;
+    return (v[i].second < v[j].first) ||(v[i].first > v[j].second) ;
 }
 
 bool possible(){
