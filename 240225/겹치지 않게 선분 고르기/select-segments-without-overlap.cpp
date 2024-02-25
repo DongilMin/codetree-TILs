@@ -11,7 +11,7 @@ bool check(int i, int j){
     int ax1=v[i].first;
     int ax2=v[i].second;
     int bx1=v[j].first;
-    int bx2=v[j].second
+    int bx2=v[j].second;
     return (ax1 <= bx1 && bx1 <= ax2) || (ax1 <= bx2 && bx2 <= ax2) ||
            (bx1 <= ax1 && ax1 <= bx2) || (bx1 <= ax2 && ax2 <= bx2);
 }
@@ -19,7 +19,7 @@ bool check(int i, int j){
 bool possible(){
     for(int i=0; i<ans.size(); i++){
         for(int j=i+1; j<ans.size(); j++){
-            if(!check(i,j)) return false;
+            if(check(i,j)) return false;
         }
     }
     return true;
