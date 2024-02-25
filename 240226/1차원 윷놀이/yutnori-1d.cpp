@@ -9,7 +9,7 @@ int score = 0;
 void fun(int turn){
     if(turn >= m){
         int tmp = 0;
-        for(int i=1; i<player.size(); i++){
+        for(int i=0; i<player.size(); i++){
             if(player[i] >= m){
                 tmp++;
             }
@@ -17,7 +17,7 @@ void fun(int turn){
         score = max(score,tmp);
         return;
     }
-    for(int j=1; j<player.size(); j++){
+    for(int j=0; j<player.size(); j++){
             if(player[j] >= m) continue;
             player[j] += v[turn];
             fun(turn+1);
@@ -27,10 +27,7 @@ void fun(int turn){
 }
 int main() {
     cin >> n >> m >> k;
-    v.push_back(0);
-    player.push_back(0);
-    for(int i=1; i<=k; i++) player.push_back(1);
-
+    for(int i=0; i<k; i++) player.push_back(1);
     for(int i=0; i<n; i++){
         int a;
         cin >> a;
