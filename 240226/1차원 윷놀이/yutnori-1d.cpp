@@ -10,7 +10,7 @@ bool impossible(int i){
     return player[i] >= m;
 }
 
-void fun(int turn, int player_index){
+void fun(int turn){
     if(turn == m+1){
         int tmp = 0;
         for(int i=1; i<player.size(); i++){
@@ -24,7 +24,7 @@ void fun(int turn, int player_index){
     for(int j=1; j<player.size(); j++){
         if(!impossible(j)) {
             player[j] += v[turn];
-            fun(turn+1, j);
+            fun(turn+1);
             player[j] -= v[turn];
         }
     }
@@ -41,7 +41,7 @@ int main() {
         cin >> a;
         v.push_back(a);
     }
-    fun(0,0);
+    fun(0);
     cout << score;
     return 0;
 }
