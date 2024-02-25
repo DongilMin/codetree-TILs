@@ -6,10 +6,6 @@ vector<int>v;
 vector<int>player;
 int score = 0;
 
-bool impossible(int i){
-    return player[i] >= m;
-}
-
 void fun(int turn){
     if(turn == m+1){
         int tmp = 0;
@@ -22,11 +18,9 @@ void fun(int turn){
         return;
     }
     for(int j=1; j<player.size(); j++){
-        if(!impossible(j)) {
             player[j] += v[turn];
             fun(turn+1);
             player[j] -= v[turn];
-        }
     }
 
 }
