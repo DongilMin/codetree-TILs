@@ -18,10 +18,9 @@ void fun(int turn){
         return;
     }
     for(int j=0; j<player.size(); j++){
-            if(player[j] >= m) continue;
-            player[j] += v[turn];
-            fun(turn+1);
-            player[j] -= v[turn];
+        player[j] += v[turn];
+        fun(turn+1);
+        player[j] -= v[turn];
     }
 
 }
