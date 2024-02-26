@@ -26,11 +26,11 @@ int main() {
     for(int i=1; i<=n; i++){
         for(int j=1; j<=m; j++){
             cin >> arr[i][j];
+            if(arr[1][1] == 0){
+                cout << 0;
+                return 0;
+            }
         }
-    }
-    if(arr[1][1] == 0){
-        cout << 0;
-        return 0;
     }
     q.push(make_pair(1,1));
     cout << dfs() << '\n';
