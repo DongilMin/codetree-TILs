@@ -5,8 +5,8 @@ using namespace std;
 int dx[4] = {0,1,0,-1};
 int dy[4] = {1,0,-1,0};
 queue<pair<int,int>>q;
-int arr[51][51];
-bool visited[51][51] = {0};
+int arr[101][101];
+bool visited[101][101] = {0};
 int n;
 int sibal = 0;
 int dfs(int i,int j){
