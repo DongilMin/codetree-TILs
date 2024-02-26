@@ -21,7 +21,7 @@ int dfs(){
             if(cx < 1 || cx > n || cy < 1 || cy > n) continue;
             if(u > abs(arr[cx][cy] - arr[cur.first][cur.second]) ||
                 abs(arr[cx][cy] - arr[cur.first][cur.second]) > d) continue;
-            if(visited[cx][cy]) continue;
+            if(0<visited[cx][cy]) continue;
             visited[cx][cy] = 1;
             cnt++;
             q.push(make_pair(cx,cy));
@@ -46,10 +46,8 @@ void func(int a,int b, int k){
             if(0 < visited[i][j]) continue;
             visited[i][j] = 2;
             q.push(make_pair(i,j));
-            //cout <<  i << " and " << j << " was pushed\n";
-            for(int l=0; l<k; l++){
-                func(i,j,k-1);
-            }
+            cout <<  i << " and " << j << " was pushed\n";
+            func(i,j,k-1);
             visited[i][j] = 0;
         }
     }
