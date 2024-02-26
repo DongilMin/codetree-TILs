@@ -5,13 +5,26 @@ using namespace std;
 int dx[4] = {0,1,0,-1};
 int dy[4] = {1,0,-1,0};
 queue<pair<int,int>>q;
+vector<pair<int,int>>v;
 int arr[101][101];
 int visited[101][101] = {0};
-int n, u, d;
+int n, k,u, d;
 int ans = 0;
 
 int dfs(int size){
-    int cnt = size;
+    for(int i=1; i<=n; i++)
+        for(int j=1; j<=n; j++)
+            visited[i][j] = 0;
+
+    int cnt = 0;
+    for(int i=0; i<v.size(); i++){
+        int a = v[i].first;
+        int b = v[i].second;
+        visited[a][b] = true;
+        cnt++;
+        q.push(make_pair(a,b));
+    }
+
     while(!q.empty()){
         auto cur = q.front();
         q.pop();
@@ -28,49 +41,32 @@ int dfs(int size){
             q.push(make_pair(cx,cy));
         }
     }
-
-    if(cnt==12){
-        for(int i=1; i<=n; i++){
-            for(int j=1; j<=n; j++){
-                cout << visited[i][j] << " ";
-            }cout << endl;
-        }
-    }
     return cnt;
 }
 
-void reset(){
-    for(int i=1; i<=n; i++)
-        for(int j=1; j<=n; j++)
-            visited[i][j] = 0;
-}
-
- void func(int a,int b, int k){
-     if(k==0){
+void func(int num){
+     if(num==k){
          ans = max(ans, dfs(q.size()));
-         reset();
          return;
      }
-     for(int i=a; i<=n; i++){
-         for(int j=b; j<=n; j++){
-             if(visited[i][j] == 0){
-                visited[i][j] = 2;
-                q.push(make_pair(i,j));
-             }
-             func(i,j,k-1);
-             visited[i][j] = 0;
-         }
-     }
- }
+     for(int i=1; i<=n; i++){
+         for(int j=1; j<=n; j++){
+            if(visited[i][j]) continue;
+            v.push_back(make_pair(i,j));
+            func(num+1);
+            v.pop_back();
+        }
+    }
+    return;
+}
 int main() {
-    int k;
     cin >> n >> k >> u >> d;
     for(int i=1; i<=n; i++){
         for(int j=1; j<=n; j++){
             cin >> arr[i][j];
         }
     }
-    func(1,1,k);
+    func(0);
     cout << ans;
     return 0;
 }
