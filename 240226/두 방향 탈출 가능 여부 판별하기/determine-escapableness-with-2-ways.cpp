@@ -28,6 +28,10 @@ int main() {
             cin >> arr[i][j];
         }
     }
+    if(arr[1][1] == 0){
+        cout << 0;
+        return 0;
+    }
     q.push(make_pair(1,1));
     cout << dfs() << '\n';
     return 0;
