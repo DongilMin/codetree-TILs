@@ -9,7 +9,7 @@ int n,m;
 bool dfs(){
     while(!q.empty()){
         auto cur = q.front();
-        if(cur.first == n && cur.second == n) return true;
+        if(cur.first == n && cur.second == m) return true;
         q.pop();
         for(int i=0; i<2; i++){
             int cx = cur.first + dx[i];
