@@ -3,10 +3,14 @@
 using namespace std;
 int dx[4] = {0,1,0,-1};
 int dy[4] = {1,0,-1,0};
+bool visited[101][101] = {0};
 queue<pair<int,int>>q;
 int arr[101][101];
 int n,m;
-bool dfs(){
+bool dfs(int i,int j){
+    if(arr[i][j] == 0) return false;
+    visited[i][j] = true;
+    q.push(make_pair(i,j));
     while(!q.empty()){
         auto cur = q.front();
         if(cur.first == n && cur.second == m) return true;
@@ -15,7 +19,9 @@ bool dfs(){
             int cx = cur.first + dx[i];
             int cy = cur.second + dy[i];
             if(cx < 1 || cx > n || cy < 1 || cy > m) continue;
+            if(visited[cx][cy]) continue;
             if(arr[cx][cy] == 0) continue;
+            visited[cx][cy] = true;
             q.push(make_pair(cx,cy));
         }
     }
@@ -28,7 +34,6 @@ int main() {
             cin >> arr[i][j];
         }
     }
-    q.push(make_pair(1,1));
-    cout << dfs() << '\n';
+    cout << dfs(1,1) << '\n';
     return 0;
 }
