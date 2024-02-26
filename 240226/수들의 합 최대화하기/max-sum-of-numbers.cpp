@@ -8,7 +8,6 @@ bool row[11];
 bool col[11];
 int ans = INT_MIN;
 vector<int>v;
-
 int cal(){
     int sum = 0;
     for(int i=0; i<v.size(); i++){
@@ -20,6 +19,7 @@ int cal(){
 void solve(int cnt){
     if(cnt == n){
         ans = max(ans, cal());
+        return;
     }
     for(int a=1; a<=n; a++){
         if(row[a]) continue;
