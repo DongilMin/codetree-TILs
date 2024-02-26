@@ -14,7 +14,7 @@ bool dfs(){
         for(int i=0; i<2; i++){
             int cx = cur.first + dx[i];
             int cy = cur.second + dy[i];
-            if(cx < 1 || cx > n || cy < 1 || cy > n) continue;
+            if(cx < 1 || cx > n || cy < 1 || cy > m) continue;
             if(arr[cx][cy] == 0) continue;
             q.push(make_pair(cx,cy));
         }
