@@ -21,6 +21,6 @@ int main() {
             else dp[i][j] = min(dp[i-1][j],dp[i][j+1])+arr[i][j];
         }
     }
-    cout << dp[3][1];
+    cout << dp[n][1];
     return 0;
 }
