@@ -17,9 +17,10 @@ int main() {
     }
     for(int i=2; i<=n; i++){
         for(int j=n; j>0; j--){
-            dp[i][j] = min(dp[i-1][j],dp[i][j+1])+arr[i][j];
+            if(j==n) dp[i][j] = dp[i-1][j] + arr[i][j];
+            else dp[i][j] = min(dp[i-1][j],dp[i][j+1])+arr[i][j];
         }
     }
-    cout << dp[n][1];
+    cout << dp[3][1];
     return 0;
 }
