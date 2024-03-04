@@ -17,7 +17,7 @@ int main() {
     int ans = 0;
     for(int i=1; i<=n; i++){
         for(int j=1; j<i; j++){
-            if(arr[i][1] > arr[j][2]) dp[i] = max(dp[i], dp[j] + arr[j][3]);
+            if(arr[i][1] > arr[j][2]) dp[i] = max(dp[i], dp[j] + arr[i][3]);
         }
         ans = max(ans, dp[i]);
     }
