@@ -11,17 +11,20 @@ int main() {
     
     for(int i=1; i<=n; i++){
         cin >> arr[i];
+        dp[i] = 1;
     }
     dp[1] = 1;
     for(int i=2; i<=n; i++){
-        dp[i] = dp[i-1];
         for(int j=i-1; j>0; j--){
             if(arr[i] > arr[j]){
-                dp[i] = dp[j]+1;
-                break;
+                dp[i] = max(dp[i], dp[j]+1);
             }
         }
     }
-    cout << dp[n];
+    int ans = 0;
+    for(int i=1; i<=n; i++){
+        ans = max(ans, dp[i]);
+    }
+    cout << ans;
     return 0;
 }
