@@ -18,10 +18,14 @@ int main() {
         v.push_back(make_pair(a,b));
     }
     sort(v.begin(), v.end(), compare);
-    dp[0] = 0;
+    dp[1] = 1;
+    int ans = 0;
     for(int i=1; i<=v.size(); i++){
-        if(v[i].first > v[i-1].second) dp[i] = dp[i-1]+1;
+        for(int j=1; j<i; j++){
+            if(v[i].first > v[j].second) dp[i] = max(dp[i], dp[j]+1);
+        }
+        ans = max(ans, dp[i]);
     }
-    cout << dp[n];
+    cout << ans;
     return 0;
 }
