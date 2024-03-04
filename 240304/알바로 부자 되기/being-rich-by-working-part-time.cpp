@@ -12,8 +12,8 @@ int main() {
         arr[i][1] = s; 
         arr[i][2] = e;
         arr[i][3] = p;
+        dp[i] = p;
     }
-    dp[1] = arr[1][3];
     int ans = 0;
     for(int i=1; i<=n; i++){
         for(int j=1; j<i; j++){
