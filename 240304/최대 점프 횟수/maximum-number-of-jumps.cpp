@@ -20,6 +20,8 @@ int main() {
             if(arr[j] + j >= i) dp[i] = max(dp[i], dp[j]+1);
         }
     }
-    cout << dp[n];
+    int ans = 0;
+    for(int i=1; i<=n; i++) ans = max(ans, dp[i]);
+    cout << ans;
     return 0;
 }
