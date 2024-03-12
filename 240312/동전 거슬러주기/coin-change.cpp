@@ -20,7 +20,7 @@ int main() {
             dp[i] = min(dp[i], dp[i-coin[j]] + 1);
         }
     }
-
+    if(dp[m] == INT_MAX) dp[m] = -1;
     cout << dp[m];
     return 0;
 }
