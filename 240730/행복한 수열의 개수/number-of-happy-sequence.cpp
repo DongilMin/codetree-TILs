@@ -19,6 +19,7 @@ bool col(int i){
     return false;
 }
 bool row(int i){
+    if(m==1) return true;
     int count = 1;
     int rev = grid[i][1];
     for(int j=2; j<=n; j++){
