@@ -17,7 +17,7 @@ int block(int i,int j){
         int row_sum = board[i-1][j] + board[i+1][j];
         if(row_sum > add) add = row_sum;
     }
-    if(j!=1 && j!= n){
+    if(j!=1 && j!= m){
         int col_sum = board[i][j-1] + board[i][j+1];
         if(col_sum > add) add = col_sum;
     }
