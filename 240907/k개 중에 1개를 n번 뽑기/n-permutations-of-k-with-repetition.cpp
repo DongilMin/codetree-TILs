@@ -11,12 +11,12 @@ void print(){
 }
 
 void cal(){
-    if(v.size() == n){
+    if(v.size() == k){
         print();
         return;
     }
 
-    for(int i=1; i<=k; i++){
+    for(int i=1; i<=n; i++){
         v.push_back(i);
         cal();
         v.pop_back();
