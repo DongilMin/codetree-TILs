@@ -4,7 +4,7 @@ using namespace std;
 int dx[4] = {0,1,0,-1};
 int dy[4] = {1,0,-1,0};
 queue<pair<int,int>>q;
-int arr[101][101];
+int arr[102][102];
 int n,m;
 bool dfs(){
     while(!q.empty()){
