@@ -23,3 +23,4 @@ int main() {
     cin >> n >> m;
     f(0,0);
     return 0;
+}
