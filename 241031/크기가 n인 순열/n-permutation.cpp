@@ -1,31 +1,36 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-bool visit[9];
 int n;
 vector<int>v;
+bool visited[10] = {0};
+
 void print(){
-    for(int i=v.size()-1; i>0; i--){
-        cout << v[i] << ' ';
-    }cout <<'\n';
-    return;
+    for(int i=0; i<v.size(); i++){
+        cout << v[i] << " ";
+    }
+    cout << "\n";
 }
-void solve(int cnt){
-    if(cnt == n){
+
+void solve(){
+    if(v.size() == n){
         print();
         return;
     }
     for(int i=1; i<=n; i++){
-        if(visit[i]) continue;
-        visit[i] = true;
-        v.push_back(i);
-        solve(cnt+1);
-        v.pop_back();
-        visit[i] = false;
+        if(!visited[i]){
+            visited[i] = true;
+            v.push_back(i);
+            solve();
+            v.pop_back();
+            visited[i] = false;
+
+        }
     }
 }
+
 int main() {
     cin >> n;
-    solve(0);
+    solve();
     return 0;
 }
