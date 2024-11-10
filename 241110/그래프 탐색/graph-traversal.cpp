@@ -6,7 +6,7 @@ int cnt = 0;
 vector<int> graph[1001];
 bool visited[1001];
 
-DFS(int curr){
+void DFS(int curr){
     for (int i : graph[curr]){
         if (!visited[i]){
             visited[i] = true; 
