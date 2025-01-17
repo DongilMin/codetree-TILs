@@ -24,7 +24,7 @@ int main() {
         for (int j = 0; j < n; j++) {
             if (grid[i][j] != prev) {
                 prev = grid[i][j];
-                cnt = 1;
+                cnt = 0;
             } else {
                 cnt++;
             }
@@ -44,7 +44,7 @@ int main() {
         for (int j = 0; j < n; j++) {
             if (grid[j][i] != prev) {
                 prev = grid[j][i];
-                cnt = 1;
+                cnt = 0;
             } else {
                 cnt++;
             }
