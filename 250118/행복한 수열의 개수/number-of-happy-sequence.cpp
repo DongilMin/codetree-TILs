@@ -19,9 +19,9 @@ int main() {
     // 행 탐색
     for (int i = 0; i < n; i++) {
         int prev = grid[i][0];
-        int cnt = 0;
+        int cnt = 1;
         bool isHappy = false; // 행복한 수열 여부 확인
-        for (int j = 0; j < n; j++) {
+        for (int j = 1; j < n; j++) {
             if (grid[i][j] != prev) {
                 prev = grid[i][j];
                 cnt = 1;
@@ -39,9 +39,9 @@ int main() {
     // 열 탐색
     for (int i = 0; i < n; i++) {
         int prev = grid[0][i];
-        int cnt = 0;
+        int cnt = 1;
         bool isHappy = false; // 행복한 수열 여부 확인
-        for (int j = 0; j < n; j++) {
+        for (int j = 1; j < n; j++) {
             if (grid[j][i] != prev) {
                 prev = grid[j][i];
                 cnt = 1;
