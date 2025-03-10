@@ -19,8 +19,8 @@ int calc(int x, int y, int k) {
 			}
 		}
 	}
-
-	return cnt;
+    if(k*k + (k+1)*(k+1) <= cnt*m) return cnt;
+    else return 0;
 }
 
 int main() {
@@ -36,6 +36,7 @@ int main() {
     int k;
     if (n>2) k = (n-1)/2;
     else k = 0;
+    
     int result = 0 ;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
