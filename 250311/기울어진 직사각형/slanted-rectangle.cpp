@@ -28,7 +28,9 @@ int search(int x, int y) {
                 for (int s = 0; s < steps; s++) {
                     curr_x += dir[d][0];
                     curr_y += dir[d][1];
-                    
+                    if (d == 3 && curr_x == x && curr_y == y){
+                        break;
+                    }
                     if (!in_range(curr_x, curr_y)) {
                         valid = false;
                         break;
