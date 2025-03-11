@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -12,33 +13,36 @@ bool in_range(int x, int y) {
 }
 
 int search(int x, int y) {
-    int sum = grid[x][y];
-    int curr_x = x;
-    int curr_y = y;
-    int curr_dir = 0;
-
-    while(curr_dir < 4){
-
-        curr_x += dir[curr_dir][0];
-        curr_y += dir[curr_dir][1];
-        if (curr_x == x && curr_y == y){
-            return sum;
-        }
-        else if (in_range(curr_x, curr_y)){
-            sum += grid[curr_x][curr_y];
-        }
-        else {
-            curr_x -= dir[curr_dir][0];
-            curr_y -= dir[curr_dir][1];
-            curr_dir++;
-            if (!(in_range(curr_x + dir[curr_dir][0], curr_y + dir[curr_dir][1]))){
-                sum = 0;
-                break;
+    int max_sum = 0;
+    
+    // 가능한 모든 크기의 기울어진 직사각형 탐색
+    for (int d1 = 1; d1 < n; d1++) {
+        for (int d2 = 1; d2 < n; d2++) {
+            int sum = grid[x][y];
+            int curr_x = x, curr_y = y;
+            bool valid = true;
+            
+            // 4 방향 이동
+            for (int d = 0; d < 4; d++) {
+                int steps = (d % 2 == 0) ? d1 : d2; // d1, d2를 번갈아 사용
+                for (int s = 0; s < steps; s++) {
+                    curr_x += dir[d][0];
+                    curr_y += dir[d][1];
+                    
+                    if (!in_range(curr_x, curr_y)) {
+                        valid = false;
+                        break;
+                    }
+                    sum += grid[curr_x][curr_y];
+                }
+                if (!valid) break;
             }
+            
+            if (valid) max_sum = max(max_sum, sum);
         }
     }
-
-    return sum;
+    
+    return max_sum;
 }
 
 int main() {
@@ -50,11 +54,10 @@ int main() {
         }
     }
 
-    // Please write your code here.
     int result = 0;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            result = max(result, search(i,j));
+            result = max(result, search(i, j));
         }
     }
 
