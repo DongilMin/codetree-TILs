@@ -41,7 +41,7 @@ int main() {
             }
         }
     }
-
-    cout << result << '\n';
+    if(!result) cout << -1 <<'\n';
+    else cout << result << '\n';
     return 0;
 }
