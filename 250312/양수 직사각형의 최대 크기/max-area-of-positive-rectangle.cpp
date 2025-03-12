@@ -38,6 +38,7 @@ int main() {
             }
         }
     }
-    cout << result;
+    if (!result) cout << -1 << '\n';
+    else cout << result;
     return 0;
 }
