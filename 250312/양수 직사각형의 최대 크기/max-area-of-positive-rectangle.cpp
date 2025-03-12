@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -15,30 +16,32 @@ int main() {
     }
 
     int result = 0;
+
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-
-            // 가로,세로 검사 길이 할당
             for (int a = i; a < n; a++) {
                 for (int b = j; b < m; b++) {
-                    int cnt = 0;
-                    bool fail = 0;
-                    for (int row = 0; row <= a; row++) {
-                        for (int col = 0; col <= b; col++) {
-                            if(grid[i+row][j+col] <= 0){
+                    bool fail = false;
+
+                    for (int row = i; row <= a; row++) {
+                        for (int col = j; col <= b; col++) {
+                            if (grid[row][col] <= 0) {
                                 fail = true;
                                 break;
                             }
-                            cnt++;
                         }
-                        if(fail) break;
+                        if (fail) break;
                     }
-                    if (!fail) result = max(result, cnt);
+
+                    if (!fail) {
+                        int area = (a - i + 1) * (b - j + 1);
+                        result = max(result, area);
+                    }
                 }
             }
         }
     }
-    if (!result) cout << -1 << '\n';
-    else cout << result;
+
+    cout << result << '\n';
     return 0;
 }
