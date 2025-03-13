@@ -39,7 +39,7 @@ void up(int row, char d) {
     char next_d = (d == 'L') ? 'R' : 'L';
     shift(row, next_d);
 
-    if (row < 0) return;
+    if (row == 0) return;
 
     bool check = false;
     for (int i = 0; i < m; i++) {
@@ -55,7 +55,7 @@ void down(int row, char d) {
     char next_d = (d == 'L') ? 'R' : 'L';
     shift(row, next_d);
 
-    if (row >= n ) return;
+    if (row == n-1 ) return;
 
     bool check = false;
     for (int i = 0; i < m; i++) {
