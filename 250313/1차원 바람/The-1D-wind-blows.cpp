@@ -31,8 +31,8 @@ void right_shift(int row) {
 }
 
 void shift(int row, char d) {
-    if (d == 'L') left_shift(row);
-    if (d == 'R') right_shift(row);
+    if (d == 'L') right_shift(row);
+    if (d == 'R') left_shift(row);
 }
 
 void up(int row, char d) {
@@ -47,7 +47,7 @@ void up(int row, char d) {
             check = true;
             break;
         }
-    }
+    } 
     if (check) up(row - 1, next_d);
 }
 
@@ -80,9 +80,9 @@ int main() {
         int r;
         char d;
         cin >> r >> d;
-        r--; // 1-based index를 0-based로 변환
+        r--;
 
-        shift(r, d); // 바람이 먼저 불어야 함
+        shift(r, d); 
 
         bool up_affected = false, down_affected = false;
 
