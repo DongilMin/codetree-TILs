@@ -4,44 +4,67 @@ using namespace std;
 
 int n, m, q;
 int a[100][100];
-bool visited[100];
-void left_shift(int col) {
-    int row_first = a[col][0];
-    for (int i = 0; i < m-1; i++) {
-        a[col][i] = a[col][i+1];
+
+void print() {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cout << a[i][j] << ' ';
+        }
+        cout << '\n';
     }
-    a[col][m-1] = row_first;
 }
 
-void right_shift(int col) {
-    int row_last = a[col][m-1];
-    for (int i = m-2; i >= 0; i--) {
-        a[col][i+1] = a[col][i];
+void left_shift(int row) {
+    int first = a[row][0];
+    for (int i = 0; i < m - 1; i++) {
+        a[row][i] = a[row][i + 1];
     }
-    a[col][0] = row_last;
+    a[row][m - 1] = first;
 }
 
-void shift(int col, char d){
-    if(d == 'L') left_shift(col);
-    if(d == 'R') right_shift(col);
+void right_shift(int row) {
+    int last = a[row][m - 1];
+    for (int i = m - 2; i >= 0; i--) {
+        a[row][i + 1] = a[row][i];
+    }
+    a[row][0] = last;
 }
-void up(int col, char d) {
-    shift(col, d);
-    if (col == 0) {
-        return;
-    }
-    for (int i = 0; i < m; i++) {
-        if(a[col][i] == a[col-1][i]) up(col-1, d);
-    }
+
+void shift(int row, char d) {
+    if (d == 'L') left_shift(row);
+    if (d == 'R') right_shift(row);
 }
-void down(int col, char d) {
-    shift(col, d);
-    if (col == n-1) {
-        return;
-    }
+
+void up(int row, char d) {
+    char next_d = (d == 'L') ? 'R' : 'L';
+    shift(row, next_d);
+
+    if (row < 0) return;
+
+    bool check = false;
     for (int i = 0; i < m; i++) {
-        if(a[col][i] == a[col-1][i]) down(col+1, d);
+        if (a[row][i] == a[row - 1][i]) {
+            check = true;
+            break;
+        }
     }
+    if (check) up(row - 1, next_d);
+}
+
+void down(int row, char d) {
+    char next_d = (d == 'L') ? 'R' : 'L';
+    shift(row, next_d);
+
+    if (row >= n ) return;
+
+    bool check = false;
+    for (int i = 0; i < m; i++) {
+        if (a[row][i] == a[row + 1][i]) {
+            check = true;
+            break;
+        }
+    }
+    if (check) down(row + 1, next_d);
 }
 
 int main() {
@@ -57,16 +80,25 @@ int main() {
         int r;
         char d;
         cin >> r >> d;
-        up(r,d);
-        down(r,d);
-    }
+        r--; // 1-based index를 0-based로 변환
 
+        shift(r, d); // 바람이 먼저 불어야 함
 
-    for (int i = 0; i < n; i++) {
+        bool up_affected = false, down_affected = false;
+
         for (int j = 0; j < m; j++) {
-            cout << a[i][j] << ' ';
+            if (r > 0 && a[r][j] == a[r - 1][j]) {
+                up_affected = true;
+            }
+            if (r < n - 1 && a[r][j] == a[r + 1][j]) {
+                down_affected = true;
+            }
         }
-        cout << '\n';
+
+        if (up_affected) up(r - 1, d);
+        if (down_affected) down(r + 1, d);
     }
+
+    print();
     return 0;
 }
