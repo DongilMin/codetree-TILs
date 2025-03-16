@@ -5,42 +5,70 @@ using namespace std;
 int n;
 int grid[100][100];
 int r, c, m1, m2, m3, m4, di;
-int dir[4][2] = { {-1, 1}, {-1, -1}, {1, -1}, {1, 1} };
-
-bool in_range(int x, int y) {
-	return 1 <= x && x <= n && 1 <= y && y <= n;
-}
 
 void shift(int r,int c, int m1, int m2, int m3, int m4, int di) {
     if (di == 0){
-        int len[4] = {m1, m2, m3, m4};
         int temp = grid[r][c];
-        int curr_r = r;
-        int curr_c = c;
-        for (int i = 3; i >= 0; i--) {
-            for(int j = 0; j < len[i]; j++){
-                grid[curr_r][curr_c] = grid[curr_r - dir[i][0]][curr_c - dir[i][1]];
-                curr_r -= dir[i][0];
-                curr_c -= dir[i][1];
-            }
+        int x = r;
+        int y = c;
+
+        for (int i = 0; i < m4; i++){
+            grid[x][y] = grid[x - 1][y - 1];
+            x--;
+            y--;
         }
-        grid[r+dir[0][0]][c+dir[0][1]] = temp;
+ 
+        for (int i = 0; i < m3; i++){
+            grid[x][y] = grid[x - 1][y + 1];
+            x--;
+            y++;
+        }
+ 
+        for (int i = 0; i < m2; i++){
+            grid[x][y] = grid[x + 1][y + 1];
+            x++;
+            y++;
+        }
+
+        for (int i = 0; i < m1; i++){
+            grid[x][y] = grid[x + 1][y - 1];
+            x++;
+            y--;
+        }
+        grid[x-1][y+1] = temp;
     }
     else {
-        int len[4] = {m1, m2, m3, m4};
-        int temp = grid[r][c];
-        int curr_r = r;
-        int curr_c = c;
-        for (int i = 0; i < 3; i++) {
-            for(int j = 0; j < len[i]; j++){
-                grid[curr_r][curr_c] = grid[curr_r + dir[i][0]][curr_c + dir[i][1]];
-                curr_r += dir[i][0];
-                curr_c += dir[i][1];
-            }
+        int temp = grid[r - m1][c + m1];
+        int x = r - m1;
+        int y = c + m1;
+        //cout << "x :" << x << " y : " << y <<" val :" << temp << '\n';
+    for (int i = 0; i < m4; i++){
+            grid[x][y] = grid[x - 1][y - 1];
+            x--;
+            y--;
         }
-        grid[r - dir[3][0]][c - dir[3][1]] = temp;
+ 
+        for (int i = 0; i < m3; i++){
+            grid[x][y] = grid[x + 1][y - 1];
+            x++;
+            y--;
+        }
+ 
+        for (int i = 0; i < m2; i++){
+            grid[x][y] = grid[x + 1][y + 1];
+            x++;
+            y++;
+        }
+
+        for (int i = 0; i < m1; i++){
+            grid[x][y] = grid[x - 1][y + 1];
+            x--;
+            y++;
+        }
+        grid[r - m1 + 1][c + m1 -1] = temp;
     }
 }
+
 int main() {
     cin >> n;
 
