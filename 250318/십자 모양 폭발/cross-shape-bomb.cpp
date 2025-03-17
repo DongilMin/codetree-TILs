@@ -44,10 +44,11 @@ void bomb(int r, int c) {
 
             if(!in_range(nx,ny)) continue;
             grid[nx][ny] = 0;
-            fall(ny);
         }
     }
-
+    for (int i = 0; i < n; i++) {
+        if (grid[r][i] == 0) fall(i);
+    }
 }
 
 int main() {
