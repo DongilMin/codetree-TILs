@@ -7,9 +7,9 @@ int grid[4][4];
 void LeftCombine(){
     for(int row=0; row<4; row++){
         for(int col=0; col<3; col++){
-            if(arr[row][col]==arr[row][col+1]){
-                arr[row][col]*=2;
-                arr[row][col+1]=0;
+            if(grid[row][col]==grid[row][col+1]){
+                grid[row][col]*=2;
+                grid[row][col+1]=0;
             }
         }
     }  
@@ -18,9 +18,9 @@ void LeftCombine(){
 void RightCombine(){
     for(int row=0; row<4; row++){
         for(int col=3; col>0; col--){
-            if(arr[row][col]==arr[row][col-1]){
-                arr[row][col]*=2;
-                arr[row][col-1]=0;
+            if(grid[row][col]==grid[row][col-1]){
+                grid[row][col]*=2;
+                grid[row][col-1]=0;
             }
         }
     }
@@ -29,9 +29,9 @@ void RightCombine(){
 void UpCombine(){
     for(int col=0; col<4; col++){
         for(int row=0; row<3; row++){
-            if(arr[row][col]==arr[row+1][col]){
-                arr[row][col]*=2;
-                arr[row+1][col]=0;
+            if(grid[row][col]==grid[row+1][col]){
+                grid[row][col]*=2;
+                grid[row+1][col]=0;
             }
         }
     }
@@ -40,9 +40,9 @@ void UpCombine(){
 void DownCombine(){
     for(int col=0; col<4; col++){
         for(int row=3; row>0; row--){
-            if(arr[row][col]==arr[row-1][col]){
-                arr[row][col]*=2;
-                arr[row-1][col]=0;
+            if(grid[row][col]==grid[row-1][col]){
+                grid[row][col]*=2;
+                grid[row-1][col]=0;
             }
         }
     }
