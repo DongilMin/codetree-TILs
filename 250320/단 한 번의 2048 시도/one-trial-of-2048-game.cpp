@@ -1,58 +1,62 @@
 #include <iostream>
-
 using namespace std;
 
-int grid[4][4];
+const int n = 4;  
+int grid[n][n];
 
 void LeftCombine(){
-    for(int row=0; row<4; row++){
-        for(int col=0; col<3; col++){
-            if(grid[row][col]==grid[row][col+1]){
-                grid[row][col]*=2;
-                grid[row][col+1]=0;
+    for(int row = 0; row < n; row++){
+        for(int col = 0; col < n - 1; col++){
+            if(grid[row][col] == grid[row][col + 1]){
+                grid[row][col] *= 2;
+                grid[row][col + 1] = 0;
             }
         }
     }  
 }
 
 void RightCombine(){
-    for(int row=0; row<4; row++){
-        for(int col=3; col>0; col--){
-            if(grid[row][col]==grid[row][col-1]){
-                grid[row][col]*=2;
-                grid[row][col-1]=0;
+    for(int row = 0; row < n; row++){
+        for(int col = n - 1; col > 0; col--){
+            if(grid[row][col] == grid[row][col - 1]){
+                grid[row][col] *= 2;
+                grid[row][col - 1] = 0;
             }
         }
     }
 }
 
 void UpCombine(){
-    for(int col=0; col<4; col++){
-        for(int row=0; row<3; row++){
-            if(grid[row][col]==grid[row+1][col]){
-                grid[row][col]*=2;
-                grid[row+1][col]=0;
+    for(int col = 0; col < n; col++){
+        for(int row = 0; row < n - 1; row++){
+            if(grid[row][col] == grid[row + 1][col]){
+                grid[row][col] *= 2;
+                grid[row + 1][col] = 0;
             }
         }
     }
 }
 
 void DownCombine(){
-    for(int col=0; col<4; col++){
-        for(int row=3; row>0; row--){
-            if(grid[row][col]==grid[row-1][col]){
-                grid[row][col]*=2;
-                grid[row-1][col]=0;
+    for(int col = 0; col < n; col++){
+        for(int row = n - 1; row > 0; row--){
+            if(grid[row][col] == grid[row - 1][col]){
+                grid[row][col] *= 2;
+                grid[row - 1][col] = 0;
             }
         }
     }
 }
 
-void Combine(){
-    if(dir=='L') LeftCombine();
-    else if(dir=='R') RightCombine();
-    else if(dir=='U') UpCombine();
-    else DownCombine();
+void Combine(char d){
+    if(d == 'L') 
+        LeftCombine();
+    else if(d == 'R') 
+        RightCombine();
+    else if(d == 'U') 
+        UpCombine();
+    else if(d == 'D') 
+        DownCombine();
 }
 
 void move_up_down(int col, char dir) {
@@ -152,20 +156,20 @@ void move_left_right(int row, char dir) {
 void shift(char d){
     if (d == 'L' || d == 'R'){
         for (int i = 0; i < n; i++) {
-            move_left_right(i,d);
+            move_left_right(i, d);
         }
     }
-    if (d == 'U' || d == 'D') {
+    else if (d == 'U' || d == 'D') {
         for (int i = 0; i < n; i++) {
-            move_up_down(i,d);
+            move_up_down(i, d);
         }
     }
 }
 
 int main() {
 
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
             cin >> grid[i][j];
         }
     }
@@ -173,17 +177,16 @@ int main() {
     char dir;
     cin >> dir;
 
-    Shift(dir);
-    Combine();
-    Shift(dir);
+    shift(dir);
+    Combine(dir);
+    shift(dir);
 
-    for(int i=0; i<4; i++){
-        for(int j=0; j<4; j++){
-            cout << arr[i][j] << " ";
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            cout << grid[i][j] << " ";
         }
-        cout <<'\n';
+        cout << '\n';
     }
-
-
+    
     return 0;
 }
