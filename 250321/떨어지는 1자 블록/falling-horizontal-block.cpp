@@ -3,7 +3,7 @@
 using namespace std;
 
 int n, m, k;
-int grid[100][100];
+int grid[101][101];
 
 int main() {
     cin >> n >> m >> k;
@@ -18,7 +18,7 @@ int main() {
 
         bool is_empty = true;
 
-        for (int j = k; j <= k + m; j++) {
+        for (int j = k; j < k + m; j++) {
             if (grid[i][j] == 1) {
                 is_empty = false;
                 break;
@@ -26,7 +26,7 @@ int main() {
         }
 
         if(is_empty) {
-            for (int j = k; j <= k + m; j++) {
+            for (int j = k; j < k + m; j++) {
                 grid[i][j] = 1;
             }
             break;
