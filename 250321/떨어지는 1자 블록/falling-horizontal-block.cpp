@@ -27,6 +27,9 @@ int main() {
         }
 
         if(is_empty) row = i;
+        else{
+            break;
+        }
     } 
     if(row) {
         for (int j = k; j < k + m; j++) {
