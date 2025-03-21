@@ -13,8 +13,9 @@ int main() {
             cin >> grid[i][j];
         }
     }
-
-    for (int i = n; i >= 1; i--){
+    
+    int row = 0;
+    for (int i = 1; i <= n; i++){
 
         bool is_empty = true;
 
@@ -25,14 +26,13 @@ int main() {
             }
         }
 
-        if(is_empty) {
-            for (int j = k; j < k + m; j++) {
-                grid[i][j] = 1;
-            }
-            break;
+        if(is_empty) row = i;
+    } 
+    if(row) {
+        for (int j = k; j < k + m; j++) {
+            grid[row][j] = 1;
         }
     }
-
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++) {
             cout << grid[i][j] << ' ';
