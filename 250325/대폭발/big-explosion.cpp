@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <cmath>
 using namespace std;
 
 int n, m, r, c;
@@ -24,8 +25,8 @@ int main() {
             int x = c.first;
             int y = c.second;
             for (int j = 0; j < 4; j++) {
-                int nx = x + dx[j] * i;
-                int ny = y + dy[j] * i;
+                int nx = x + dx[j] * pow(2,i-1);
+                int ny = y + dy[j] * pow(2,i-1);
                 if(!in_range(nx, ny) || grid[nx][ny] == 1) continue;
                 grid[nx][ny] = 1;
                 v.push_back({nx, ny});
@@ -36,9 +37,7 @@ int main() {
     for (int i = 1; i <= n; i++) {
         for (int j = 1; j <= n; j++) {
             if(grid[i][j] == 1) cnt++;
-            // cout << grid[i][j] << ' ';
         }
-        // cout << '\n';
     }
     cout << cnt << '\n';
     return 0;
