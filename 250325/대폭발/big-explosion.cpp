@@ -6,8 +6,8 @@ using namespace std;
 int n, m, r, c;
 int grid[101][101] = {0};
 queue<pair<pair<int, int>, int>> q;
-int dx[4] = {-1,0,1,0};
-int dy[4] = {0,1,0,-1};
+int dx[5] = {0,-1,0,1,0};
+int dy[5] = {0,0,1,0,-1};
 
 bool in_range(int x, int y) {
     return x > 0 && y > 0 && x <= n && y <= n;
@@ -24,7 +24,7 @@ int main() {
         for(auto c : v) {
             int x = c.first;
             int y = c.second;
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < 5; j++) {
                 int nx = x + dx[j] * pow(2,i-1);
                 int ny = y + dy[j] * pow(2,i-1);
                 if(!in_range(nx, ny) || grid[nx][ny] == 1) continue;
