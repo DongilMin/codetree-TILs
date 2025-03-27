@@ -6,9 +6,8 @@ int n, m, t;
 int board[100][100];
 int grid[100][100] = {0};
 queue<pair<int, int>> q;
-int dx[4] = {-1,0,1,0};
-int dy[4] = {0,1,0,-1};
-
+int dx[4] = {-1,1,0,0};
+int dy[4] = {0,0,-1,1};
 bool in_range(int x, int y) {
     return x >= 0 && x < n && y >= 0 && y < n;
 }
@@ -32,8 +31,8 @@ void func(int x, int y) {
     }
     //cout << "next is " << nx << " and " << ny << "\n";
     if (nx != -1 && ny != -1) {
-    grid[nx][ny]++;
-}
+        grid[nx][ny]++;
+    }
 
 }
 
