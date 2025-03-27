@@ -16,7 +16,7 @@ bool in_range(int x, int y) {
 void func(int x, int y) {
     // cout << " curr is " << x << " and " << y << '\n';
     grid[x][y]--;
-    int tmp = -55;
+    int tmp = 0;
     int nx = -1;
     int ny = -1;
     for (int i = 0; i < 4; i++) {
