@@ -31,10 +31,14 @@ void func(int x, int y) {
         }
     }
     //cout << "next is " << nx << " and " << ny << "\n";
+    if (nx != -1 && ny != -1) {
     grid[nx][ny]++;
 }
 
+}
+
 void simulate() {
+    while (!q.empty()) q.pop();
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             if(grid[i][j] == 1) q.push({i,j});
