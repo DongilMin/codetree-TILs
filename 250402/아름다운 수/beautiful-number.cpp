@@ -13,7 +13,7 @@ bool is_beautiful() {
         int val = v[i];
         int j = i;
 
-        while (v[j] == val && j < n) {
+        while (j < n && v[j] == val) {
             j++;
             cnt++;
         }
