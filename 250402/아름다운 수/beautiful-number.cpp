@@ -37,7 +37,7 @@ void func(int curr, int val) {
         return;
     }
 
-    for (int i = 1; i <= n; i++) {
+    for (int i = 1; i <= 4; i++) {
         v.push_back(i);
         func(curr + 1, i);
         v.pop_back();
