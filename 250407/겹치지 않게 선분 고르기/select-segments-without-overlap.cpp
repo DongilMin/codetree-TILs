@@ -49,6 +49,7 @@ int main() {
         cin >> x1 >> x2;
         v.push_back({x1, x2});
     }
+    sort(v.begin(), v.end());
     func(0, 0);
     cout << result;
     return 0;
