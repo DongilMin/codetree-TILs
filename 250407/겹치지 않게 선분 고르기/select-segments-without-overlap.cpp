@@ -11,7 +11,10 @@ vector<pair<int, int>> v;
 int result = 0;
 
 bool is_visited(int x1, int x2) {
-    return visited[x1] || visited[x2];
+    for (int i = x1; i <= x2; i++) {
+        if (visited[i]) return true;
+    }
+    return false;
 }
 
 void visit(int x1, int x2) {
