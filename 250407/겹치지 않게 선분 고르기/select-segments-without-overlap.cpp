@@ -3,7 +3,7 @@
 using namespace std;
 
 int n;
-bool visited[15];
+bool visited[1001] = {0};
 vector<pair<int, int>> v;
 vector<pair<int, int>> u;
 int result = 0;
@@ -27,7 +27,7 @@ void cancel_visit(int x1, int x2) {
 }
 
 void func(int curr, int num) {
-    if (curr >= v.size()){
+    if (curr >= n){
         result = max(result, num);
         return; 
     }
