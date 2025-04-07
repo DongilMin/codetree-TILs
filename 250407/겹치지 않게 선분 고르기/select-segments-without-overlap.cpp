@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int n;
@@ -9,24 +10,19 @@ vector<pair<int, int>> u;
 int result = 0;
 
 bool is_visited(int x1, int x2) {
-    for (int j = x1; j <= x2; j++) 
-        if (visited[j])
-            return true;
 
     return false;
 }
 
 void visit(int x1, int x2) {
-    for (int j = x1; j <= x2; j++) 
-        visited[j] = true;
+    visited[x1] = visited[x2] = true;
 }
 
 void cancel_visit(int x1, int x2) {
-    for (int j = x1; j <= x2; j++) 
-        visited[j] = false;
+    visited[x1] = visited[x2] = false;
 }
 
-void func(int curr, int num) {
+void func(int curr, int num, int prev_end) {
     if (curr >= n){
         result = max(result, num);
         return; 
@@ -34,13 +30,11 @@ void func(int curr, int num) {
     for (int i = curr; i < v.size(); i++) {
         int x1 = v[i].first;
         int x2 = v[i].second;
-        if (is_visited(x1, x2)) {
-            func(curr + 1, num); 
+        if (prev_end < x1) {
+            func(curr + 1, num + 1, x2);
         }
         else {
-            visit(x1, x2);
-            func(curr + 1, num + 1);
-            cancel_visit(x1, x2);
+            func(curr + 1, num, prev_end);
         }
     }
 }
@@ -52,7 +46,8 @@ int main() {
         cin >> x1 >> x2;
         v.push_back({x1, x2});
     }
-    func(0,0);
+    sort(v.begin(), v.end());
+    func(0,0,0);
     cout << result;
     return 0;
 }
