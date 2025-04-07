@@ -52,7 +52,8 @@ int main() {
     }
 
     int cnt = 0;
-    int prev_end = 0;
+    int prev_end = -1;
+
     while (!q.empty()) {
         auto curr = q.top();
         q.pop();
