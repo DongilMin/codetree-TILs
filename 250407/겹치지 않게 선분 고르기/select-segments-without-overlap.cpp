@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <queue>
+#include <functional>
 using namespace std;
 
 int n;
@@ -42,12 +44,26 @@ void func(int curr, int num, int prev_end) {
 int main() {
     cin >> n;
     int x1, x2;
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> q;
+
     for (int i = 0; i < n; i++) {
         cin >> x1 >> x2;
-        v.push_back({x1, x2});
+        q.push({x1, x2});
     }
-    sort(v.begin(), v.end());
-    func(0,0,0);
-    cout << result;
+
+    int cnt = 0;
+    int prev_end = 0;
+    while (!q.empty()) {
+        auto curr = q.top();
+        q.pop();
+        int x1 = curr.first;
+        int x2 = curr.second;
+        
+        if (prev_end < x1) {
+            prev_end = x2;
+            cnt++;
+        }
+    }
+    cout << cnt;
     return 0;
 }
