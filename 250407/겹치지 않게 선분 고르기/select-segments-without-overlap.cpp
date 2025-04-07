@@ -26,21 +26,19 @@ void cancel_visit(int x1, int x2) {
 }
 
 void func(int curr, int num) {
-    if (curr >= n){
+    if (curr == n){
         result = max(result, num);
         return; 
     }
-    for (int i = curr; i < v.size(); i++) {
-        int x1 = v[i].first;
-        int x2 = v[i].second;
-        if (is_visited(x1, x2)) {
-            func(curr + 1, num);
-        }
-        else {
-            visit(x1, x2);
-            func(curr + 1, num + 1);
-            cancel_visit(x1, x2);
-        }
+    int x1 = v[curr].first;
+    int x2 = v[curr].second;
+
+    func(curr + 1, num);
+
+    if(!is_visited(x1, x2)) {
+        visit(x1, x2);
+        func(curr + 1, num + 1);
+        cancel_visit(x1, x2);
     }
 }
 
