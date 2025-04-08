@@ -12,8 +12,8 @@ int ans = 65535;
 
 bool possible() {
 
-    int origin[ans];
-    int subject[ans];
+    int origin[500];
+    int subject[500];
     for (int i = 0; i <= n; i++) {
         origin[i] = subject[i] = i;
     }
@@ -54,8 +54,9 @@ int main() {
     int a, b;
     for (int i = 0; i < m; i++) {
         cin >> a >> b;
-        v.push_back({b,a});
+        v.push_back({b, a});
     }
+
     sort(v.begin(), v.end());
 
     sibal(0);
