@@ -14,7 +14,7 @@ bool possible() {
 
     int origin[ans];
     int subject[ans];
-    for (int i = 1; i <= n; i++) {
+    for (int i = 0; i <= n; i++) {
         origin[i] = subject[i] = i;
     }
 
@@ -57,7 +57,9 @@ int main() {
         v.push_back({b,a});
     }
     sort(v.begin(), v.end());
+
     sibal(0);
+    
     cout << ans;
 
     return 0;
