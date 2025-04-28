@@ -1,38 +1,37 @@
-#include <iostream>
-#include <stack>
-#include <algorithm>
-#include <climits>
+#include <bits/stdc++.h>
 using namespace std;
 
-string expression;
-int result = INT_MIN;
+string expr;
+int best = INT_MIN;
 
-void func(int idx, int len, vector<int>& v){
-    if (idx == len) {
-        int num = v[0];
-        for (int i = 2; i < expression.length(); i += 2) {
-            int val = v[i/2];
-            char op = expression[i - 1];
-            if (op == '-') num -= val;
-            else if (op == '+') num += val;
-            else num *= val;
+// letterIdx = 0('a') .. 5('f')
+void dfs(int letterIdx, array<int,6>& val){
+    if(letterIdx == 6){
+        int acc = val[expr[0]-'a'];
+        for(int i = 1; i < expr.size(); i += 2){
+            char op = expr[i];
+            int  x  = val[expr[i+1]-'a'];
+            if      (op=='+') acc += x;
+            else if (op=='-') acc -= x;
+            else /*'*'*/      acc *= x;
         }
-        result = max(result, num);
+        best = max(best, acc);
         return;
     }
-    v[idx] = 1;
-    func(idx + 1, len, v);
-    v[idx] = 4;
-    func(idx + 1, len, v);    
-}
-int main() {
-    cin >> expression;
-    int leng = expression.length();
-    int len = leng % 2 ? leng / 2 + 1 : leng / 2;
-    vector<int> v(len, 1);
-    v[0] = 4;
-    func(1, len, v);
-    cout << result;
-    return 0;
+    for(int x = 1; x <= 4; ++x){
+        val[letterIdx] = x;
+        dfs(letterIdx+1, val);
+    }
 }
 
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    cin >> expr;
+    array<int,6> val;
+    val.fill(1);
+    dfs(0, val);
+    cout << best << "\n";
+    return 0;
+}
