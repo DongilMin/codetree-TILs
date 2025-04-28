@@ -8,8 +8,6 @@ int weight[11][11];
 int sum = INT_MIN;
 
 void func(int row, int col, int num, int curr, int val) {
-    if(col > n || curr > c) return;
-
     if (num > m) {
         sum = max(sum, val);
         return;
@@ -31,13 +29,13 @@ int main() {
     }
     int result = 0;
     for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= n; j++) {
+        for (int j = 1; j <= n - m + 1; j++) {
+            sum = INT_MIN;
             func(i, j, 1, 0, 0);
             int first_thief = sum;
-            sum = INT_MIN;
             // if(first_thief == 64) cout << i << " and " << j << '\n';
             for (int k = 1; k <= n; k++) {
-                for (int l = 1; l <= n; l++) {
+                for (int l = 1; l <= n - m + 1; l++) {
                     if (i == k && !(l + m - 1 < j || l > j + m - 1)) continue;
                     sum = INT_MIN;
                     func(k, l, 1, 0, 0);
