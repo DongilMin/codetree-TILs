@@ -1,10 +1,11 @@
 #include <iostream>
 #include <stack>
 #include <algorithm>
+#include <climits>
 using namespace std;
 
 string expression;
-int result = 0;
+int result = INT_MIN;
 
 void func(int idx, int len, vector<int>& v){
     if (idx == len) {
