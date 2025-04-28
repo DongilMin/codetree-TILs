@@ -31,7 +31,8 @@ int main() {
     int leng = expression.length();
     int len = leng % 2 ? leng / 2 + 1 : leng / 2;
     vector<int> v(len, 1);
-    func(0, len, v);
+    v[0] = 4;
+    func(1, len, v);
     cout << result;
     return 0;
 }
