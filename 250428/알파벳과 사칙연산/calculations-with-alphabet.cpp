@@ -20,11 +20,10 @@ void func(int idx, int len, vector<int>& v){
         result = max(result, num);
         return;
     }
-
-    for (int i = 1; i <= 4; i++) {
-        v[idx] = i;
-        func(idx + 1, len, v);
-    }
+    v[idx] = 1;
+    func(idx + 1, len, v);
+    v[idx] = 4;
+    func(idx + 1, len, v);    
 }
 int main() {
     cin >> expression;
@@ -36,3 +35,4 @@ int main() {
     cout << result;
     return 0;
 }
+
