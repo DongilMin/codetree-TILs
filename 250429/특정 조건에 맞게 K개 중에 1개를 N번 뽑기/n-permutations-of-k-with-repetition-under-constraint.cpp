@@ -5,12 +5,10 @@ int K, N;
 vector<int> v;
 
 bool check(int num) {
-    int cnt = 0;
-    for (int i = 0; i < v.size(); i++) {
-        if (v[i] == num) cnt++;
+    if (v.size() < 2) return true;
+    else {
+        return !(num == v[v.size() - 1] && num == v[v.size() - 2]);
     }
-
-    return cnt < 2;
 }
 
 void print() {
