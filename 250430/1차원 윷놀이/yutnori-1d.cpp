@@ -4,7 +4,7 @@ using namespace std;
 
 int n, m, k;
 int num;
-int nums[12];
+int nums[13];
 int result = 0;
 
 void func(int curr, vector<int>& v) {
@@ -16,15 +16,13 @@ void func(int curr, vector<int>& v) {
         result = max(result, cnt);
         return;
     }
-        if( result == (num / (m - 1))) {
-            return;
-        }
+
     for (int i = 1; i <= k; i++) {
         v[i] += nums[curr];
         func(curr + 1, v);
         v[i] -= nums[curr];
     }
-    
+
 }
 
 int main() {
