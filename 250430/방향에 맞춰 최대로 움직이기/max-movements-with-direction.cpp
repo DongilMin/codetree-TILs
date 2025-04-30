@@ -14,7 +14,7 @@ int result = 0;
 void func(int x, int y, int cnt) {
 
     bool find = 0;
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i <= n; i++) {
         int nx = x + dir[d[x][y]][0] * i;
         int ny = y + dir[d[x][y]][1] * i;
 
