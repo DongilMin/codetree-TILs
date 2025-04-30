@@ -3,6 +3,7 @@
 using namespace std;
 
 int n, m, k;
+int num;
 int nums[12];
 int result = 0;
 
@@ -15,22 +16,23 @@ void func(int curr, vector<int>& v) {
         result = max(result, cnt);
         return;
     }
-
-    for (int i = 1; i <= k; i++) {
-        if(v[i] < m) {
-            v[i] += nums[curr];
-            func(curr + 1, v);
-            v[i] -= nums[curr];
+        if( result == (num / (m - 1))) {
+            return;
         }
+    for (int i = 1; i <= k; i++) {
+        v[i] += nums[curr];
+        func(curr + 1, v);
+        v[i] -= nums[curr];
     }
+    
 }
 
 int main() {
     cin >> n >> m >> k;
     vector<int> v(k + 1, 1);
-
     for (int i = 1; i <= n; i++) {
         cin >> nums[i];
+        num += nums[i];
     }
     func(1, v);
     cout << result;
