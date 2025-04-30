@@ -17,10 +17,11 @@ void func(int curr, vector<int>& v) {
     }
 
     for (int i = 1; i <= k; i++) {
-        if(v[i] >= m) continue;
-        v[i] += nums[curr];
-        func(curr + 1, v);
-        v[i] -= nums[curr];
+        if(v[i] < m) {
+            v[i] += nums[curr];
+            func(curr + 1, v);
+            v[i] -= nums[curr];
+        }
     }
 }
 
