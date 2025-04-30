@@ -17,7 +17,7 @@ void func(int x, int y, int cnt) {
     for (int i = 1; i <= n; i++) {
         int nx = x + dir[d[x][y]][0] * i;
         int ny = y + dir[d[x][y]][1] * i;
-
+        if(nx < 1 || ny < 1 || nx > n || ny > n) continue;
         if (num[x][y] < num[nx][ny]) {
             find = 1;
             func(nx, ny, cnt + 1);
