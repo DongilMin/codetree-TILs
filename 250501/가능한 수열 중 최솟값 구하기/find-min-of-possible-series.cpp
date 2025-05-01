@@ -1,54 +1,55 @@
 #include <iostream>
-#include <vector>
+#include <string>
 using namespace std;
 
-string s;
 int n;
+bool found = false;
+string s;
 
-bool first = false;
-
-bool check(int x1, int len) {
-    // 두 번 길이 len만큼 읽으면 범위를 벗어나면 비교 불필요
-    if (x1 + 2 * len > n) 
-        return false;
-
-    for (int i = 0; i < len; ++i) {
-        if (v[x1 + i] != v[x1 + len + i]) 
-            return false;
+// s에 길이 L = s.length()인 상태에서
+// 어떤 길이 len짜리 블록이 연속으로 두 번 나오는지 검사
+bool possible() {
+    int L = s.length();
+    for (int len = 1; len * 2 <= L; ++len) {
+        for (int i = 0; i + 2 * len <= L; ++i) {
+            bool equal = true;
+            for (int j = 0; j < len; ++j) {
+                if (s[i + j] != s[i + len + j]) {
+                    equal = false;
+                    break;
+                }
+            }
+            if (equal) return false;
+        }
     }
     return true;
 }
 
-bool possible() {
-    // i는 '반복 길이' (1부터 n/2까지)
-    for (int len = 1; len <= v.size() / 2; ++len) {
-        // x1은 시작 인덱스, 두 블록(len만큼)을 모두 읽을 수 있을 때까지만
-        for (int x1 = 0; x1 + 2 * len <= n; ++x1) {
-            if (check(x1, len)) 
-                return false;    // 같은 패턴이 붙어 있으면 False
-        }
-    }
-    return true;  // 전부 통과하면 True
-}
-
-void func(int curr) {
-    if (curr > n && !first) {
-        if (possible()) {
-            first = true;
-            for (int num : v) {
-                cout << num;
-            }
-        }
+void dfs(int cur) {
+    if (found) return;            // 이미 답을 찾았으면 바로 종료
+    if (cur == n) {
+        // 길이 n의 좋은 수열 완성!
+        cout << s << "\n";
+        found = true;
         return;
     }
-    for (int i = 4; i <= 6; i++) {
-        v.push_back(i);
-        func(curr + 1);
-        v.pop_back();
+    // 4,5,6 을 하나씩 붙여보며
+    for (char c = '4'; c <= '6'; ++c) {
+        s.push_back(c);
+        // 지금 붙인 상태가 아직 “좋은 수열”이라면
+        if (possible()) {
+            dfs(cur + 1);
+        }
+        if (found) return;        // 하위에서 답을 찾았으면 바로 돌아가기
+        s.pop_back();
     }
 }
+
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     cin >> n;
-    func(1);
-    return 0; 
+    dfs(0);
+    return 0;
 }
