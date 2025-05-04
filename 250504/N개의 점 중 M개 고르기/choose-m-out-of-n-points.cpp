@@ -14,11 +14,11 @@ int calc(int x1, int y1, int x2, int y2) {
 }
 
 int check() {
-    int min_val = INT_MAX;
+    int min_val = INT_MIN;
 
     for (int i = 0; i < v.size(); i++) {
         for (int j = i + 1; j < v.size(); j++)
-            min_val = min(min_val, calc(v[i].first, v[i].second, v[j].first, v[j].second));
+            min_val = max(min_val, calc(v[i].first, v[i].second, v[j].first, v[j].second));
     }
     return min_val;
 }
