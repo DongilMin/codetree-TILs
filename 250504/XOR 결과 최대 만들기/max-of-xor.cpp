@@ -20,16 +20,18 @@ int calc() {
 }
 
 void func(int idx, int cnt) {
-    if(cnt == m || idx == n) {
+    if(cnt == m) {
         ans = max(ans, calc());
         return;
     }
-    v.push_back(A[idx]);
-    func(idx + 1, cnt + 1);
-    v.pop_back();
+    if(idx == n) return;
 
-    func(idx + 1, cnt);
+    func(idx + 1, cnt); 
+    v.push_back(A[idx]);
+    func(idx + 1, cnt + 1); 
+    v.pop_back();
 }
+
 int main() {
     cin >> n >> m;
 
