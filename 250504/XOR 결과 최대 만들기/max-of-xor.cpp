@@ -20,6 +20,7 @@ int calc() {
 }
 
 void func(int idx, int cnt) {
+    if(idx == n) return;
     if(cnt == m) {
         ans = max(ans, calc());
         return;
