@@ -20,19 +20,15 @@ int calc() {
 }
 
 void func(int idx, int cnt) {
-    if(idx == n) return;
-    if(cnt == m) {
+    if(cnt == m || idx == n) {
         ans = max(ans, calc());
         return;
     }
-    if(idx + 1 < n) {
-        v.push_back(A[idx]);
-        func(idx + 1, cnt + 1);
-        v.pop_back();
+    v.push_back(A[idx]);
+    func(idx + 1, cnt + 1);
+    v.pop_back();
 
-        func(idx + 1, cnt);
-    }
-
+    func(idx + 1, cnt);
 }
 int main() {
     cin >> n >> m;
@@ -42,6 +38,7 @@ int main() {
     }
 
     func(0, 0);
+
     cout << ans;
     return 0;
 }
