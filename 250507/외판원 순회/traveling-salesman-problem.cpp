@@ -14,6 +14,7 @@ void func(int curr) {
         int sum = 0;
         for (int i = 1; i <= n; i++) {
             sum += A[ v[i - 1] ][ v[i] ];
+            if(A[ v[i - 1] ][ v[i] ] == 0) break;
         }
         sum += A[v[n - 1]][1];
         result = min(result, sum);
