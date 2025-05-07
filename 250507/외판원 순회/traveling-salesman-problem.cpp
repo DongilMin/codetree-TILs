@@ -10,24 +10,37 @@ int result = INT_MAX;
 vector<int> v;
 
 void func(int curr) {
-    if (curr > 4) {
+    if (v.size() == n - 1) { // n = 4
         int sum = 0;
-        for (int i = 1; i <= n; i++) {
-            sum += A[ v[i - 1] ][ v[i] ];
-            if(A[ v[i - 1] ][ v[i] ] == 0) break;
+        int prev = 1; // 출발점(1번 행)
+        bool invalid = false;
+
+        // 경로 비용 합계
+        for (int city : v) {
+            if (A[prev][city] == 0) {
+                invalid = true; // 길 없음
+                break;
+            }
+            sum += A[prev][city];
+            prev = city;
         }
-        sum += A[v[n - 1]][1];
-        result = min(result, sum);
+
+        // 마지막 도시에서 출발지(1번)로 돌아오는 비용
+        if (!invalid && A[prev][1] != 0) {
+            sum += A[prev][1];
+            result = min(result, sum);
+        }
+
         return;
-        }
-    
-    for (int i = 2; i <= n; i++) {
+    }
+
+    for (int i = 2; i <= n; i++) { // 도시 2~n 선택
         if (visited[i]) continue;
         visited[i] = true;
         v.push_back(i);
         func(curr + 1);
         v.pop_back();
-        visited[i]= false;
+        visited[i] = false;
     }
 }
 
@@ -39,9 +52,7 @@ int main() {
             cin >> A[i][j];
         }
     }
-    v.push_back(1);
-    visited[1] = true;
-    func(2);
+    func(1);
     cout << result;
 
     return 0;
