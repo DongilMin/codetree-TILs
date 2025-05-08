@@ -6,9 +6,11 @@ using namespace std;
 
 int n, m;
 bool visited[101][101];
+
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 int grid[101][101];
+
 void reset() {
     for (int i = 1; i <= n; i++){
         for (int j = 1; j <= m; j++) {
@@ -49,7 +51,7 @@ int main() {
         }
     }
 
-    pair<int, int> result = {0,0};
+    pair<int, int> result = {1, 0};
     for (int k = 1; k <= 100; k++) {
         reset();
         int num_of_town = 0;
