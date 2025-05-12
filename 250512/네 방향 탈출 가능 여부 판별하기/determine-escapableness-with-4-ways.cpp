@@ -5,11 +5,11 @@ using namespace std;
 int n, m;
 int a[100][100];
 bool visited[100][100];
-queue<pair<int, int>>q;
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 
 bool bfs(int aa, int b) {
+    queue<pair<int, int>>q;
     q.push({aa, b});
     while(!q.empty()) {
         auto curr = q.front();
