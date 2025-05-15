@@ -91,7 +91,7 @@ int main() {
                     return 0;        
                 }
                 cnt = melted;
-                // print();
+                print();
             }
         }
     }
