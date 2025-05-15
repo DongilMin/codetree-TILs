@@ -18,7 +18,13 @@ void print() {
     }
     cout << '\n';
 }
-
+void reset() {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            visited[i][j] = false;
+        }
+    }
+}
 bool all_removed() {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
@@ -63,7 +69,6 @@ int bfs(int a, int b) {
         targets.pop();
         int x = curr.first;
         int y = curr.second;
-        visited[x][y] = false;
         grid[x][y] = 0;
         // cout << " row : " << curr.first << " and col : " << curr.first << " was melted\n";
     }
@@ -91,7 +96,8 @@ int main() {
                     return 0;        
                 }
                 cnt = melted;
-                print();
+                //print();
+                reset();
             }
         }
     }
