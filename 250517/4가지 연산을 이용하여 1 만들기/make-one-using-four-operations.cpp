@@ -18,7 +18,7 @@ int main() {
     while(!q.empty()) {
         int curr = q.front();
         q.pop();
-        if (curr % 2 == 1) {
+        if (curr < N + 4) {
             if (table[curr + 1] > table[curr] + 1) {
                 table[curr + 1] = table[curr] + 1;
                 if (curr + 1 > 0) q.push(curr + 1);
