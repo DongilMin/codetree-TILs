@@ -41,7 +41,7 @@ int main() {
         }
     }
     BFS(0, 0);
-    if(dist[n - 1][m - 1] == INF) cout << -1;
+    if(dist[n - 1][m - 1] == INT_MAX) cout << -1;
     else cout << dist[n - 1][m - 1];
     return 0;
 }
