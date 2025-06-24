@@ -12,7 +12,7 @@ int main() {
         dp[i] = INT_MIN;
     }
     dp[0] = 1;
-    int result = INT_MIN;
+    int result = 1;
     for (int i = 1; i < N; i++) {
         for (int j = 0; j < i; j++) {
             if (M[i] > M[j])
