@@ -9,9 +9,8 @@ int main() {
     cin >> N;
     for (int i = 0; i < N; i++) {
         cin >> M[i];
-        dp[i] = INT_MIN;
+        dp[i] = 1;
     }
-    dp[0] = 1;
     int result = 1;
     for (int i = 1; i < N; i++) {
         for (int j = 0; j < i; j++) {
