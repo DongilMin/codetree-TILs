@@ -1,6 +1,6 @@
 #include <iostream>
 #include <climits>
-#include <algoritm>
+#include <algorithm>
 
 using namespace std;
 
@@ -11,15 +11,15 @@ int main() {
     cin >> n;
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
-        dp[i] = INT_MIN;
+        dp[i] = -1;
     }
 
     dp[0] = 0;
     int result = 0;
     
-    for (int i = 0; i < n; i++) {
+    for (int i = 1; i < n; i++) {
         for (int j = 0; j < i; j++) {
-            if (dp[j] == INT_MIN) continue;
+            if (dp[j] == -1) continue;
 
             if (j + arr[j] >= i)
                 dp[i] = max(dp[i], dp[j] + 1);
