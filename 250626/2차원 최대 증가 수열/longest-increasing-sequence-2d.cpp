@@ -18,10 +18,10 @@ int main() {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
 
-            for (int a = i + 1; a < n; a++) {
-                for (int b = j + 1; b < m; b++) {
-                    if (grid[i][j] < grid[a][b]) {
-                        dp[a][b] = max(dp[a][b], dp[i][j] + 1);
+            for (int a = 0; a < i; a++) {
+                for (int b = 0; b < j; b++) {
+                    if (grid[i][j] > grid[a][b]) {
+                        dp[i][j] = max(dp[i][j], dp[a][b] + 1);
                     }
                 }
             }
