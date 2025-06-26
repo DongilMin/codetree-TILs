@@ -16,10 +16,10 @@ int main() {
 
     int result = -1;
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
+        for (int j = 0; j < m; j++) {
 
             for (int a = i + 1; a < n; a++) {
-                for (int b = j + 1; b < n; b++) {
+                for (int b = j + 1; b < m; b++) {
                     if (grid[i][j] < grid[a][b]) {
                         dp[a][b] = max(dp[a][b], dp[i][j] + 1);
                     }
