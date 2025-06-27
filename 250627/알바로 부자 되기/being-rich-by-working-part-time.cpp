@@ -18,17 +18,16 @@ int main() {
         dp[i] = pay[i];
     }
 
-    sort(v.begin(), v.end(), compare);
+
 
     int result = 0;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < i; j++) {
-            if (v[j].second < v[i].first && v[j].first < v[i].first)
+            if (v[j].second < v[i].first)
                 dp[i] = max(dp[i], dp[j] + pay[i]);
         }
         result = max(result, dp[i]);
     }
-
     cout << result;
     return 0;
 }
