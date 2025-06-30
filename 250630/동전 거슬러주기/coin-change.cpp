@@ -3,8 +3,8 @@
 using namespace std;
 
 int N, M;
-int coin[100];
-int dp[100];
+int coin[100000];
+int dp[100000];
 int main() {
     cin >> N >> M;
 
