@@ -30,7 +30,7 @@ int main() {
             }
         }
     }
-    int result = -1;
+    int result = 0;
     for (int i = 1; i <= M; i++) result = max(result, dp[i]);
     cout << result;
     return 0;
