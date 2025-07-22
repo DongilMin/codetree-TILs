@@ -10,23 +10,23 @@ int main() {
     int total = 0;
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
-        total += 0;
-        // dp[arr[i]] = 1;
+        total += arr[i];
     }
     if (total % 2) {
-        cout << "N";
+        cout << "No";
         return 0;
     }
     dp[0] = 1;
     for (int i = 0; i < n; i++) {
         for (int j = total; j >= arr[i]; j--) {
             if (dp[j - arr[i]]) {
-                dp[j] += dp[j - arr[i]];
+                dp[j]++;
             }
         }
     }
-
-    if (dp[total / 2] > 1) cout << "YES";
+    //for (int i = 1; i <= total/2; i++) cout << dp[i] << ' ';
+    //cout << '\n';
+    if (dp[total / 2] > 1) cout << "Yes";
     else cout << "No";
     return 0;
 }
