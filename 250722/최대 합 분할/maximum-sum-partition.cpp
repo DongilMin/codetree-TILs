@@ -17,9 +17,9 @@ int main() {
         totalSum += nums[i];
     }
     
-    // dp[i][j][k] = 첫 i개의 수(0번째부터 i-1번째까지)를 고려했을 때, 
+    // dp[i][j][k] = 첫 i개의 수를 고려했을 때, 
     // 그룹 A의 합이 j, 그룹 B의 합이 k인 경우가 가능한지
-    // 그룹 C의 합은 totalSum - j - k
+    // 그룹 C의 합은 totalSum - j - k (하지만 C는 고려하지 않음)
     vector<vector<vector<bool>>> dp(N + 1, 
         vector<vector<bool>>(totalSum + 1, 
             vector<bool>(totalSum + 1, false)));
@@ -29,13 +29,9 @@ int main() {
     
     // 각 수에 대해
     for (int i = 0; i < N; i++) {
-        // 현재 처리할 수는 nums[i]
         for (int j = 0; j <= totalSum; j++) {
             for (int k = 0; k <= totalSum; k++) {
                 if (dp[i][j][k]) {
-                    // dp[i][j][k]가 true라면, i개의 수를 사용해서 
-                    // 그룹 A의 합=j, 그룹 B의 합=k를 만들 수 있음
-                    
                     // nums[i]를 그룹 A에 넣는 경우
                     if (j + nums[i] <= totalSum) {
                         dp[i + 1][j + nums[i]][k] = true;
@@ -47,30 +43,23 @@ int main() {
                     }
                     
                     // nums[i]를 그룹 C에 넣는 경우
-                    // 그룹 C의 합은 따로 저장하지 않음
                     dp[i + 1][j][k] = true;
                 }
             }
         }
     }
     
-    int minMaxSum = INT_MAX;
+    int result = 0;
     
-    // 모든 N개의 수를 사용한 경우에서 최적해 찾기
+    // 모든 N개의 수를 사용한 경우에서 A와 B의 합이 같고 최대인 경우 찾기
     for (int j = 0; j <= totalSum; j++) {
-        for (int k = 0; k <= totalSum; k++) {
-            if (dp[N][j][k]) {
-                int sumC = totalSum - j - k;
-                if (sumC >= 0) {
-                    // 세 그룹의 합 중 최댓값
-                    int maxSum = max({j, k, sumC});
-                    minMaxSum = min(minMaxSum, maxSum);
-                }
-            }
+        // A와 B의 합이 같은 경우만 확인
+        if (dp[N][j][j]) {
+            result = max(result, j);
         }
     }
     
-    cout << minMaxSum << endl;
+    cout << result << endl;
     
     return 0;
 }
