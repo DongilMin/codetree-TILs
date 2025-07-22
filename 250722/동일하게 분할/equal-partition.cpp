@@ -4,7 +4,7 @@ using namespace std;
 
 int n;
 long long arr[101];
-int dp[1001] = {0};
+int dp[1000000] = {0};
 int main() {
     cin >> n;
     long long total = 0;
