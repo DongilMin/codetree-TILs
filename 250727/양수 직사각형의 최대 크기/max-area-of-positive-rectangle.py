@@ -12,7 +12,7 @@ def get_size(x1, y1, x2, y2):
 
 ans = -1
 for i in range(n):
-    for j in range(n):
+    for j in range(m):
         for k in range(i, n):
             for l in range(j, m):
                 if get_size(i, j, k, l):
