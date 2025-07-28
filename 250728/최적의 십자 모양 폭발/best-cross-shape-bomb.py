@@ -14,7 +14,7 @@ def fall(bombs, col):
     
     for i in range(n - 1, -1, -1):
         if blocks:
-            bombs[i][col] = blocks.pop()
+            bombs[i][col] = blocks.pop(0)
         else:
             bombs[i][col] = 0
 
