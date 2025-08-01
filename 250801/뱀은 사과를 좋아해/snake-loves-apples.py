@@ -38,7 +38,8 @@ for mission in info:
         time += 1
         nx = curr_x + directions[direction][0]
         ny = curr_y + directions[direction][1]
-        if not in_range(nx, ny) or grid[nx][ny] == 1:
+
+        if not in_range(nx, ny):
             print(time)
             exit()
 
@@ -50,9 +51,14 @@ for mission in info:
         else:
             tail = q.pop()
             grid[tail[0]][tail[1]] = 0
-            grid[curr_x][curr_y] = 1
-            grid[nx][ny] = 2
-            q.insert(0, (nx, ny))  
+            if grid[nx][ny] == 1:
+                print(time)
+                exit()
+            else:
+                grid[curr_x][curr_y] = 1
+                grid[nx][ny] = 2
+                q.insert(0, (nx, ny))  
         curr_x = nx
         curr_y = ny
 print(time)
+
