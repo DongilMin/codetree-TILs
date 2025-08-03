@@ -27,7 +27,7 @@ def simulation(start_x, start_y, direct):
     while True:
         # if(start_x == 5 and start_y == 5):
         #    print(f"here is {curr_x} and {curr_y}")
-        if 1 < n and time >= n * n:
+        if 1 < n and time > n * n + 1:
             return -1
         dx, dy = directions[curr_direct]
         curr_x += dx
