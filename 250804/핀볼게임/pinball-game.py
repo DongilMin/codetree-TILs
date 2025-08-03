@@ -10,12 +10,12 @@ def in_range(x, y):
 
 def turn(bar, direct):
     if bar == 2: # \
-        if direct == 0 or direct == 3:
-            return direct + 1
+        if direct == 0 or direct == 2:
+            return (direct + 1) % 4
         else:
-            return direct - 1
+            return (direct - 1) % 4
     else: # /
-        if direct == 0 or direct == 3:
+        if direct == 0 or direct == 2:
             return (direct + 1) % 4
         else:
             return (direct - 1) % 4  
