@@ -25,8 +25,8 @@ def simulation(start_x, start_y, direct):
     curr_direct = direct
     time = 1
     while True:
-        if(start_x == 5 and start_y == 5):
-            print(f"here is {curr_x} and {curr_y}")
+        # if(start_x == 5 and start_y == 5):
+        #    print(f"here is {curr_x} and {curr_y}")
         dx, dy = directions[curr_direct]
         curr_x += dx
         curr_y += dy
