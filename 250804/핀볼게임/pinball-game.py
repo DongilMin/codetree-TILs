@@ -23,6 +23,10 @@ def turn(bar, direct):
 def simulation(start_x, start_y, direct):
     curr_x, curr_y = start_x, start_y
     curr_direct = direct
+
+    if grid[curr_x][curr_y] != 0:
+        curr_direct = turn(grid[curr_x][curr_y], curr_direct)
+        
     time = 1
     while True:
         # if(start_x == 5 and start_y == 5):
