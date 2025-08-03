@@ -32,14 +32,14 @@ def simulation(start_x, start_y, direct):
         dx, dy = directions[curr_direct]
         curr_x += dx
         curr_y += dy
-
+        time += 1
         if not in_range(curr_x, curr_y):
             break
             
-        time += 1
         if grid[curr_x][curr_y] != 0:
             curr_direct = turn(grid[curr_x][curr_y], curr_direct)
-    return time + 1
+
+    return time
 
 result = 0
 for i in range(1, n + 1):
