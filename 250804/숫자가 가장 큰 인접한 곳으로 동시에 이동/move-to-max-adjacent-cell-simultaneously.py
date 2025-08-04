@@ -35,7 +35,7 @@ def simulation(time):
 
             find_next_x = curr_x
             find_next_y = curr_y
-            move_target = grid[curr_x][curr_y]
+            move_target = 0
             for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
                 nx = curr_x + dx
                 ny = curr_y + dy
