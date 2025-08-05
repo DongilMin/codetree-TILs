@@ -20,7 +20,7 @@ for _ in range(T):
         xi, yi, di = input().split()
         marbles.append((int(xi), int(yi), dir_to_num(di)))
 
-    for i in range(N * N + 1):
+    for i in range(2*N + 1):
         new_marbles = []
         for marble in marbles:
             curr_x = marble[0]
