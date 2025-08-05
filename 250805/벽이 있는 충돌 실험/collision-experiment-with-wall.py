@@ -1,40 +1,44 @@
-from collections import Counter
+import sys
+input = sys.stdin.readline
+
+# 방향 맵핑 및 이동 델타
+dir_map = {'U': 0, 'D': 1, 'R': 2, 'L': 3}
+dirs    = [(-1, 0), (1, 0), (0, 1), (0, -1)]  # U, D, R, L
 
 T = int(input())
-directions = [(-1, 0), (1, 0), (0, 1), (0, -1)] # U, D, R, L
-
-def in_range(x, y, n):
-    return 1 <= x <= n and 1 <= y <= n
-
-def turn(d):
-    return d + 1 if d in (0, 2) else d - 1
-        
-def dir_to_num(c):
-    return {'U': 0, 'D': 1, 'R': 2, 'L': 3}[c]
-
 for _ in range(T):
     N, M = map(int, input().split())
     marbles = []
-    x, y, d = [], [], []
     for _ in range(M):
-        xi, yi, di = input().split()
-        marbles.append((int(xi), int(yi), dir_to_num(di)))
+        x, y, c = input().split()
+        marbles.append((int(x), int(y), dir_map[c]))
 
-    for i in range(2*N + 1):
-        new_marbles = []
-        for marble in marbles:
-            curr_x = marble[0]
-            curr_y = marble[1]
-            curr_d = marble[2]
+    # 각 구슬은 수평/수직 이동 주기가 2*(N-1) 이므로
+    ticks = 2 * (N - 1)
+    for _ in range(ticks):
+        # 위치 충돌 카운터 초기화
+        pos_cnt = [[0] * (N + 1) for _ in range(N + 1)]
+        moved = []
 
-            dx, dy = directions[curr_d]
-            nx = curr_x + dx
-            ny = curr_y + dy
-            nd = curr_d
-            if not in_range(nx, ny, N):
-                nx, ny = curr_x, curr_y
-                nd = turn(curr_d)
-            new_marbles.append((nx, ny, nd))
-        cnt_pos = Counter((x, y) for x, y, d in new_marbles)
-        marbles = [(x, y, d) for x, y, d in new_marbles if cnt_pos[(x, y)] == 1]
+        # 1) 이동
+        for x, y, d in marbles:
+            dx, dy = dirs[d]
+            nx, ny = x + dx, y + dy
+            # 벽 충돌 시 제자리 + 방향 반전
+            if not (1 <= nx <= N and 1 <= ny <= N):
+                nx, ny = x, y
+                d ^= 1  # 0↔1, 2↔3
+            moved.append((nx, ny, d))
+            pos_cnt[nx][ny] += 1
+
+        # 2) 충돌 제거: 위치당 1개인 구슬만 남김
+        marbles = [
+            (x, y, d)
+            for x, y, d in moved
+            if pos_cnt[x][y] == 1
+        ]
+        if not marbles:
+            break
+
+    # 결과 출력
     print(len(marbles))
