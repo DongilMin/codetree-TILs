@@ -37,7 +37,7 @@ def find_beautiful_num(cnt):
             result += 1
             return 
     else:
-        for i in range(1, n + 1):
+        for i in range(1, 5):
             selected.append(i)
             find_beautiful_num(cnt + 1)
             selected.pop(-1)
