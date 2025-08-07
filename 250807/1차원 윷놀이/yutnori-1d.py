@@ -1,5 +1,4 @@
 n, m, k = map(int, input().split())
-m -= 1
 nums = list(map(int, input().split()))
 horses = [1] * k
 ans = 0
