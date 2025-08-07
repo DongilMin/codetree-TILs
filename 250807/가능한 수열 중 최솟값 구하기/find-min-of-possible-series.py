@@ -1,3 +1,5 @@
+import sys
+
 n = int(input())
 ans = "4"
 selected = []
@@ -16,8 +18,9 @@ def backtracking(index):
     global ans
     if index == n:
         if not is_impossible():
-            ans.append(selected[:])
-        return
+            for c in selected:
+                print(c, end="")
+            sys.exit()
     else:
         for num in nums:
             selected.append(num)
@@ -26,6 +29,3 @@ def backtracking(index):
         return
 
 backtracking(0)
-ans.sort()
-for c in ans[0]:
-    print(c, end="")
