@@ -19,10 +19,11 @@ def backtracking(curr):
         return
     else:
         for i in range(k):
-            if horses[i] < m:
-                horses[i] += nums[curr]
-                backtracking(curr + 1)
-                horses[i] -= nums[curr]
+            if horses[i] >= m:
+                continue
+            horses[i] += nums[curr]
+            backtracking(curr + 1)
+            horses[i] -= nums[curr]
 
 backtracking(0)
 print(ans)
