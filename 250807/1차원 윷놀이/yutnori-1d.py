@@ -14,8 +14,8 @@ def calc():
 
 def backtracking(curr):
     global ans
+    ans = max(ans, calc())
     if curr == n:
-        ans = max(ans, calc())
         return
     else:
         for i in range(k):
