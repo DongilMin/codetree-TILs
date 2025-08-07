@@ -1,7 +1,7 @@
 n, m, k = map(int, input().split())
 m -= 1
 nums = list(map(int, input().split()))
-horses = [0] * k
+horses = [1] * k
 ans = 0
 
 # k개의 말에 대하여 각각이 n개의 경우에 할당된다. O(k*n)
