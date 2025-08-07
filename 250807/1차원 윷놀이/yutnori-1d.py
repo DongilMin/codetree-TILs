@@ -17,13 +17,13 @@ def backtracking(curr):
     global ans
     if curr == n:
         ans = max(ans, calc())
+        return
     else:
         for i in range(k):
             if horses[i] < m:
                 horses[i] += nums[curr]
                 backtracking(curr + 1)
                 horses[i] -= nums[curr]
-                backtracking(curr + 1)
-                
+
 backtracking(0)
 print(ans)
