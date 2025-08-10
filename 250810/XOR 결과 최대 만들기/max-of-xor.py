@@ -13,7 +13,7 @@ def func(idx, cnt):
     if cnt == m:
         ans = max(ans, calc())
         return
-    elif idx > n:
+    elif idx == n:
         return
     else:
         selected.append(idx)
@@ -21,5 +21,5 @@ def func(idx, cnt):
         selected.pop()
         func(idx + 1, cnt)
 
-func(1, 0)
+func(0, 0)
 print(ans)
