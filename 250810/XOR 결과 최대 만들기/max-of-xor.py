@@ -16,7 +16,7 @@ def func(idx, cnt):
     elif idx == n:
         return
     else:
-        selected.append(idx)
+        selected.append(A[idx])
         func(idx + 1, cnt + 1)
         selected.pop()
         func(idx + 1, cnt)
