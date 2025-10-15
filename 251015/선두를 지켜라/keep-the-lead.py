@@ -1,5 +1,6 @@
 n, m = map(int, input().split())
-pos_a, pos_b = [0] * 1001, [0] * 1001
+max_t = 1000001
+pos_a, pos_b = [0] * max_t, [0] * max_t
 
 # Process A's movements
 v = []
