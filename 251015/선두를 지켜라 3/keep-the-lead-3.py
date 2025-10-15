@@ -30,19 +30,23 @@ for i in range(m):
         pos_b[record_b] = pos_b[record_b - 1] + v2[i]
         record_b += 1
 
-leader, ans = 0, 0
+ans = 0
+lead_a = False
+lead_b = False
 for i in range(1, record_a):
     if pos_a[i] > pos_b[i]:
-        if leader == 2:
+        if lead_b == True:
+            lead_a = True
+            lead_b = False
             ans += 1
-
-        leader = 1
     elif pos_a[i] < pos_b[i]:
-        if leader == 1:
+        if lead_a == True:
+            lead_b = True
+            lead_a = False
             ans += 1
-
-        leader = 2
     else:
+        lead_b = True
+        lead_a = True
         ans += 1
 
 print(ans)
