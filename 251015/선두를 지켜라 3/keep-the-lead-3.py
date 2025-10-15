@@ -33,20 +33,22 @@ for i in range(m):
 ans = 0
 lead_a = False
 lead_b = False
-for i in range(1, record_a):
-    if pos_a[i] > pos_b[i]:
-        if lead_b == True:
-            lead_a = True
-            lead_b = False
-            ans += 1
-    elif pos_a[i] < pos_b[i]:
-        if lead_a == True:
-            lead_b = True
-            lead_a = False
-            ans += 1
+
+def get_leader(pos1, pos2):
+    if pos1 > pos2:
+        return 1  # A가 선두
+    elif pos2 > pos1:
+        return 2  # B가 선두
     else:
-        lead_b = True
-        lead_a = True
+        return 3  # 공동 선두
+        
+prev_leader = get_leader(pos_a[0], pos_b[0])
+for i in range(1, record_b):
+    current_leader = get_leader(pos_a[i], pos_b[i])
+    
+    if current_leader != prev_leader:
         ans += 1
+    
+    prev_leader = current_leader
 
 print(ans)
