@@ -27,7 +27,7 @@ for i in range(n):
 record_b = 1
 for i in range(m):
     for _ in range(t2[i]):
-        pos_b[record_b] = pos_a[record_b - 1] + v2[i]
+        pos_b[record_b] = pos_b[record_b - 1] + v2[i]
         record_b += 1
 
 leader, ans = 0, 0
