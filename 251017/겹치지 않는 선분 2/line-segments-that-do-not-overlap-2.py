@@ -10,7 +10,7 @@ for i in range(n):
         if j == i:
             continue
         
-        if (x[i][0] <= x[j][0] and x[i][1] >= x[j][1]) or (x[i][0] >= x[j][0] and x[i][0] <= x[j][1]):
+        if (x[i][0] <= x[j][0] and x[i][1] >= x[j][1]) or (x[i][0] >= x[j][0] and x[i][1] <= x[j][1]):
             overlap = True
             break
     
