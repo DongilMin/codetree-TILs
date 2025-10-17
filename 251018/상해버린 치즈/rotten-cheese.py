@@ -46,3 +46,53 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+"""
+from collections import defaultdict
+
+INF = 10**18
+input = __import__('sys').stdin.readline
+
+def main():
+    n, m, d, s = map(int, input().split())
+
+    eat = [[] for _ in range(n + 1)]  # 사람별 (치즈, 시간)
+    for _ in range(d):
+        p, c, t = map(int, input().split())
+        eat[p].append((c, t))
+
+    sick_time = [INF] * (n + 1)
+    for _ in range(s):
+        p, t = map(int, input().split())
+        sick_time[p] = min(sick_time[p], t)
+
+    # step 1️⃣ 각 아픈 사람별로 "발병 전에 먹은 치즈들" 구하기
+    candidate_cheeses = []  # 각 아픈 사람의 후보 치즈 집합
+    sick_people = [p for p in range(1, n + 1) if sick_time[p] < INF]
+
+    for p in sick_people:
+        eaten_before_sick = set()
+        for c, t in eat[p]:
+            if t < sick_time[p]:  # 발병 전에 먹었으면 후보
+                eaten_before_sick.add(c)
+        candidate_cheeses.append(eaten_before_sick)
+
+    # step 2️⃣ 공통으로 먹은 치즈(모두가 발병 전에 먹은 치즈)
+    if not candidate_cheeses:  # 아픈 사람 없음
+        print(0)
+        return
+
+    common_cheeses = set.intersection(*candidate_cheeses)
+
+    # step 3️⃣ 그 치즈들을 먹은 모든 사람 찾기
+    eaters = set()
+    for p in range(1, n + 1):
+        for c, t in eat[p]:
+            if c in common_cheeses:
+                eaters.add(p)
+
+    print(len(eaters))
+
+if __name__ == "__main__":
+    main()
+"""
