@@ -15,7 +15,7 @@ for i in range(N):
     for j in range(N):
         if money + remain[j] > B:
             break
-        money += P[j]
+        money += remain[j]
         student += 1
     
     ans = max(ans, student)
