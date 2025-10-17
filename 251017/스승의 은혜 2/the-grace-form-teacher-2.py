@@ -3,14 +3,21 @@ P = [int(input()) for _ in range(N)]
 
 ans = 0
 for i in range(N):
-    remain = B - (P[i] // 2)
-    cnt = 1
-    for j in range(N):
-        if i == j:
-            continue
-        if remain - P[j] >= 0:
-            remain -= P[j]
-            cnt += 1
-    ans = max(ans ,cnt)
+    remain = [
+        P[j] for j in range(N)
+    ]
+    P[i] /= 2
 
-print(cnt)
+    remain.sort()
+    money = 0
+    student = 0
+
+    for j in range(N):
+        if money + remain[j] > B:
+            break
+        money += P[j]
+        student += 1
+    
+    ans = max(ans, student)
+
+print(ans)
