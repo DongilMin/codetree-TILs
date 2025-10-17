@@ -6,7 +6,7 @@ for i in range(N):
     remain = [
         P[j] for j in range(N)
     ]
-    P[i] /= 2
+    remain[i] /= 2
 
     remain.sort()
     money = 0
