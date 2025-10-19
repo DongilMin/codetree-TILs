@@ -12,8 +12,8 @@ def get_field(x, y, a, b):
         return 4
 
 ans = 10**18
-for x in range(1, 101):
-    for y in range(1, 101):
+for x in range(1, 101, 2):
+    for y in range(1, 101, 2):
 
         field = [[] for _ in range(5)]
         max_val = 0
