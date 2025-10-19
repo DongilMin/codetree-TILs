@@ -2,14 +2,15 @@ n = int(input())
 points = [tuple(map(int, input().split())) for _ in range(n)]
 
 def get_field(x, y, a, b):
-    if y < a and x < b:
+    if a < x and b < y:
         return 1
-    elif y < a and x > b:
+    elif a > x and b < y:
         return 2
-    elif y > a and x > b:
+    elif a > x and b > y:
         return 3
     else:
         return 4
+
 
 ans = 10**18
 for x in range(1, 101, 2):
